@@ -16,9 +16,12 @@
 
 package org.esa.beam.framework.datamodel;
 
+import org.esa.beam.framework.dataio.ProductIO;
 import org.junit.Test;
 
+import javax.media.jai.operator.ConstantDescriptor;
 import java.awt.Dimension;
+import java.io.File;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -54,7 +57,6 @@ public class ProductSceneRasterSizeTest {
         assertEquals(new Dimension(110, 200), product.getSceneRasterSize());
     }
 
-     /*
     @Test
     public void testDimap() throws Exception {
 
@@ -71,6 +73,7 @@ public class ProductSceneRasterSizeTest {
         product.addBand(b2);
         assertEquals(new Dimension(110, 200), product.getSceneRasterSize());
 
+        // todo - [multisize_products] remove created output product
         File file = new File("multisize_product.dim");
         ProductIO.writeProduct(product, file, "BEAM-DIMAP", false);
         Product product2 = ProductIO.readProduct(file);
@@ -78,6 +81,6 @@ public class ProductSceneRasterSizeTest {
         assertEquals(new Dimension(100, 200), product2.getBand("B1").getRasterSize());
         assertEquals(new Dimension(110, 190), product2.getBand("B2").getRasterSize());
     }
-    */
+
 }
 
