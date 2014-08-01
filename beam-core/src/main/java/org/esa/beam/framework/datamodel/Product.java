@@ -700,8 +700,19 @@ public class Product extends ProductNode {
      *                                  <code>sceneWith</code> or <code>sceneHeight</code> of its <code>MapInfo</code>
      *                                  is not equal to this products <code>sceneRasterWidth</code> or
      *                                  <code>sceneRasterHeight</code>
+     * @deprecated use {@link #setSceneGeoCoding(GeoCoding)} instead
      */
+    @Deprecated
     public void setGeoCoding(final GeoCoding geoCoding) {
+        setSceneGeoCoding(geoCoding);
+    }
+
+    /**
+     * Geo-codes this data product.
+     *
+     * @param geoCoding the geo-coding, if <code>null</code> geo-coding is removed
+     */
+    public void setSceneGeoCoding(final GeoCoding geoCoding) {
         checkGeoCoding(geoCoding);
         if (!ObjectUtils.equalObjects(this.geoCoding, geoCoding)) {
             this.geoCoding = geoCoding;
@@ -714,8 +725,19 @@ public class Product extends ProductNode {
      * Returns the geo-coding used for this data product.
      *
      * @return the geo-coding, can be <code>null</code> if this product is not geo-coded.
+     * @deprecated use {@link #getSceneGeoCoding()} instead
      */
+    @Deprecated
     public GeoCoding getGeoCoding() {
+        return getSceneGeoCoding();
+    }
+
+    /**
+     * Returns the geo-coding used for this data product.
+     *
+     * @return the geo-coding, can be <code>null</code> if this product is not geo-coded.
+     */
+    public GeoCoding getSceneGeoCoding() {
         return geoCoding;
     }
 

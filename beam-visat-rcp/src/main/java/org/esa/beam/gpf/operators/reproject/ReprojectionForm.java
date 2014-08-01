@@ -27,7 +27,7 @@ import com.bc.ceres.swing.selection.AbstractSelectionChangeListener;
 import com.bc.ceres.swing.selection.SelectionChangeEvent;
 import org.esa.beam.framework.datamodel.GeoCoding;
 import org.esa.beam.framework.datamodel.GeoPos;
-import org.esa.beam.framework.datamodel.ImageGeometry;
+import org.esa.beam.framework.datamodel.ReprojectionImageGeometry;
 import org.esa.beam.framework.datamodel.Product;
 import org.esa.beam.framework.datamodel.ProductFilter;
 import org.esa.beam.framework.gpf.ui.SourceProductSelector;
@@ -339,15 +339,15 @@ class ReprojectionForm extends JTabbedPane {
                 width = (Integer) container.getValue("width");
                 height = (Integer) container.getValue("height");
             } else {
-                ImageGeometry iGeometry;
+                ReprojectionImageGeometry iGeometry;
                 final Product collocationProduct = collocationCrsUI.getCollocationProduct();
                 if (collocationCrsUI.getRadioButton().isSelected() && collocationProduct != null) {
-                    iGeometry = ImageGeometry.createCollocationTargetGeometry(sourceProduct, collocationProduct);
+                    iGeometry = ReprojectionImageGeometry.createCollocationTargetGeometry(sourceProduct, collocationProduct);
                 } else {
-                    iGeometry = ImageGeometry.createTargetGeometry(sourceProduct, crs,
-                                                                   null, null, null, null,
-                                                                   null, null, null, null,
-                                                                   null);
+                    iGeometry = ReprojectionImageGeometry.createTargetGeometry(sourceProduct, crs,
+                                                                               null, null, null, null,
+                                                                               null, null, null, null,
+                                                                               null);
 
                 }
                 Rectangle imageRect = iGeometry.getImageRect();
@@ -624,15 +624,15 @@ class ReprojectionForm extends JTabbedPane {
         @Override
         protected void onReset() {
             final Product collocationProduct = collocationCrsUI.getCollocationProduct();
-            ImageGeometry imageGeometry;
+            ReprojectionImageGeometry reprojectionImageGeometry;
             if (collocationCrsUI.getRadioButton().isSelected() && collocationProduct != null) {
-                imageGeometry = ImageGeometry.createCollocationTargetGeometry(sourceProduct, collocationProduct);
+                reprojectionImageGeometry = ReprojectionImageGeometry.createCollocationTargetGeometry(sourceProduct, collocationProduct);
             } else {
-                imageGeometry = ImageGeometry.createTargetGeometry(sourceProduct, crs,
-                                                                   null, null, null, null,
-                                                                   null, null, null, null, null);
+                reprojectionImageGeometry = ReprojectionImageGeometry.createTargetGeometry(sourceProduct, crs,
+                                                                                           null, null, null, null,
+                                                                                           null, null, null, null, null);
             }
-            outputGeometryFormModel.resetToDefaults(imageGeometry);
+            outputGeometryFormModel.resetToDefaults(reprojectionImageGeometry);
         }
     }
 
