@@ -133,10 +133,15 @@ public class Product extends ProductNode {
     private Dimension sceneRasterSize;
 
     /**
+     * Holds the information of the scene raster geometry.
+     */
+    private ImageGeometry sceneImageGeometry;
+
+    /**
      * Has the product's scene raster geometry been invalidated?
      * Used to determine whether the geometry must be recomputed.
      */
-    private boolean sceneRasterGeometryInvalidated;
+    private boolean sceneImageGeometryInvalidated;
 
     /**
      * The start time of the first raster line.
@@ -711,6 +716,13 @@ public class Product extends ProductNode {
         return sceneGeoCoding;
     }
 
+    public ImageGeometry getSceneImageGeometry() {
+        if (sceneImageGeometryInvalidated) {
+            recomputeSceneImageGeometry();
+        }
+        return sceneImageGeometry;
+    }
+
     /**
      * Geo-codes this data product.
      *
@@ -786,19 +798,19 @@ public class Product extends ProductNode {
     }
 
     public Dimension getSceneRasterSize() {
-        if (sceneRasterGeometryInvalidated) {
-            recomputeSceneRasterGeometry();
+        if (sceneImageGeometryInvalidated) {
+            recomputeSceneImageGeometry();
         }
         return sceneRasterSize != null ? (Dimension) sceneRasterSize.clone() : null;
     }
 
     // todo - do we want this method at all? Maybe useful to init size after no-size constructor before bands are added
     public void setSceneRasterSize(Dimension sceneRasterSize) {
-        Assert.state(!sceneRasterGeometryInvalidated && this.sceneRasterSize == null);
+        Assert.state(!sceneImageGeometryInvalidated && this.sceneRasterSize == null);
         if (!ObjectUtils.equalObjects(this.sceneRasterSize, sceneRasterSize)) {
             Dimension oldSceneRasterSize = this.sceneRasterSize;
             this.sceneRasterSize = sceneRasterSize != null ? (Dimension) sceneRasterSize.clone() : null;
-            sceneRasterGeometryInvalidated = false;
+            sceneImageGeometryInvalidated = false;
             fireNodeChanged(this, "sceneRasterSize", oldSceneRasterSize, sceneRasterSize);
         }
     }
@@ -807,8 +819,8 @@ public class Product extends ProductNode {
      * @return The scene raster width in pixels, or 0 if the scene raster geometry is not (yet) determined.
      */
     public int getSceneRasterWidth() {
-        if (sceneRasterGeometryInvalidated) {
-            recomputeSceneRasterGeometry();
+        if (sceneImageGeometryInvalidated) {
+            recomputeSceneImageGeometry();
         }
         return sceneRasterSize != null ? sceneRasterSize.width : 0;
     }
@@ -817,8 +829,8 @@ public class Product extends ProductNode {
      * @return The scene raster height in pixels, or 0 if the scene raster geometry is not (yet) determined.
      */
     public int getSceneRasterHeight() {
-        if (sceneRasterGeometryInvalidated) {
-            recomputeSceneRasterGeometry();
+        if (sceneImageGeometryInvalidated) {
+            recomputeSceneImageGeometry();
         }
         return sceneRasterSize != null ? sceneRasterSize.height : 0;
     }
@@ -1100,7 +1112,7 @@ public class Product extends ProductNode {
     /**
      * Adds the given band to this product.
      *
-     * @param band the band to added, must not be <code>null</code>
+     * @param band the band to be added, must not be <code>null</code>
      */
     public void addBand(final Band band) {
         Assert.notNull(band, "band");
@@ -2248,13 +2260,13 @@ public class Product extends ProductNode {
     }
 
     private void maybeInvalidateSceneRasterGeometry(RasterDataNode rasterDataNode) {
-        if (sceneRasterGeometryInvalidated || !rasterDataNode.getRasterSize().equals(sceneRasterSize)) {
-            sceneRasterGeometryInvalidated = true;
+        if (sceneImageGeometryInvalidated || !rasterDataNode.getRasterSize().equals(sceneRasterSize)) {
+            sceneImageGeometryInvalidated = true;
             sceneRasterSize = null;
         }
     }
 
-    private void recomputeSceneRasterGeometry() {
+    private void recomputeSceneImageGeometry() {
         // todo - [multisize_products] replace this numb algorithm by something reasonable that takes the bands' geographical coverage into account (nf)
         Band[] bands = getBands();
         Dimension dimension = null;
@@ -2267,7 +2279,7 @@ public class Product extends ProductNode {
         }
         // todo - [multisize_products] also loop through tiePointGrids, masks
         sceneRasterSize = dimension;
-        sceneRasterGeometryInvalidated = false;
+        sceneImageGeometryInvalidated = false;
     }
 
     /**
