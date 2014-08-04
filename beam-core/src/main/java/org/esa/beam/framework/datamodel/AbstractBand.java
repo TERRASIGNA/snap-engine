@@ -270,17 +270,20 @@ public abstract class AbstractBand extends RasterDataNode {
     /**
      * Gets a raster data holding this band's pixel data for an entire product scene. If the data has'nt been loaded so
      * far the method returns <code>null</code>.
-     * <p/>
+     * <p>
      * <p>In opposite to the <code>getRasterData</code> method, this method returns raster data that has at least
      * <code>getBandOutputRasterWidth()*getBandOutputRasterHeight()</code> elements of the given data type to store the
      * scene's pixels.
      *
      * @return raster data covering the pixels for a complete scene
+     *
      * @see #getRasterData
      * @see org.esa.beam.framework.datamodel.RasterDataNode#getSceneRasterWidth
      * @see org.esa.beam.framework.datamodel.RasterDataNode#getSceneRasterHeight
+     * @deprecated since SNAP 0.5. Use ImageGeometryTransform instead
      */
     @Override
+    @Deprecated
     public ProductData getSceneRasterData() {
         return getRasterData();
     }

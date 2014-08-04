@@ -247,8 +247,10 @@ public class TiePointGrid extends RasterDataNode {
      * @see #getRasterHeight
      * @see #getSceneRasterWidth
      * @see #getSceneRasterHeight
+     * @deprecated since SNAP 0.5. Use ImageGeometryTransform instead
      */
     @Override
+    @Deprecated
     public ProductData getSceneRasterData() {
         int width = getSceneRasterWidth();
         int height = getSceneRasterHeight();
