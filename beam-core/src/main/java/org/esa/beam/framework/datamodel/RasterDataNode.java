@@ -101,6 +101,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      * The raster's height.
      */
     private final int rasterHeight;
+    private Dimension tileSize;
 
     private double scalingFactor;
     private double scalingOffset;
@@ -224,6 +225,22 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      */
     public Dimension getRasterSize() {
         return new Dimension(rasterWidth, rasterHeight);
+    }
+
+    /**
+     * @return The tile size of the native raster in pixels.
+     */
+    public Dimension getTileSize() {
+        return tileSize;
+    }
+
+    /**
+     * Sets the tile size of the native raster.
+     *
+     * @param tileSize the native tile size, may be <code>null</null> if not specified
+     */
+    public void setTileSize(Dimension tileSize) {
+        this.tileSize = tileSize;
     }
 
     @Override
