@@ -128,14 +128,9 @@ public class Product extends ProductNode {
     private String productType;
 
     /**
-     * The product's scene raster size in pixels.
-     */
-    private Dimension sceneRasterSize;
-
-    /**
      * Holds the information of the scene raster geometry.
      */
-    private ImageGeometry sceneImageGeometry;
+    private SceneImageGeometry sceneImageGeometry;
 
     /**
      * Has the product's scene raster geometry been invalidated?
@@ -178,7 +173,6 @@ public class Product extends ProductNode {
 
     private String quicklookBandName;
 
-    private Dimension sceneTileSize;
     private AutoGrouping autoGrouping;
     private final PlacemarkGroup pinGroup;
     private final PlacemarkGroup gcpGroup;
@@ -257,7 +251,7 @@ public class Product extends ProductNode {
         Guardian.assertNotNullOrEmpty("type", type);
         this.productType = type;
         this.reader = reader;
-        this.sceneRasterSize = sceneRasterSize;
+        this.sceneImageGeometry = new SceneImageGeometry(sceneRasterSize);
         this.metadataRoot = new MetadataElement(METADATA_ROOT_NAME);
         this.metadataRoot.setOwner(this);
 
@@ -655,9 +649,9 @@ public class Product extends ProductNode {
         pointingFactory = null;
         productManager = null;
 
-        if (sceneGeoCoding != null) {
-            sceneGeoCoding.dispose();
-            sceneGeoCoding = null;
+        if (sceneImageGeometry != null) {
+            sceneImageGeometry.dispose();
+            sceneImageGeometry = null;
         }
 
         if (validMasks != null) {
@@ -700,8 +694,8 @@ public class Product extends ProductNode {
      */
     public void setSceneGeoCoding(final GeoCoding geoCoding) {
         checkGeoCoding(geoCoding);
-        if (!ObjectUtils.equalObjects(this.sceneGeoCoding, geoCoding)) {
-            this.sceneGeoCoding = geoCoding;
+        if (!ObjectUtils.equalObjects(sceneImageGeometry.getGeoCoding(), geoCoding)) {
+            sceneImageGeometry.setGeoCoding(geoCoding);
             fireProductNodeChanged(PROPERTY_NAME_GEOCODING);
             setModified(true);
         }
@@ -713,7 +707,7 @@ public class Product extends ProductNode {
      * @return the geo-coding, can be <code>null</code> if this product is not geo-coded.
      */
     public GeoCoding getSceneGeoCoding() {
-        return sceneGeoCoding;
+        return sceneImageGeometry.getGeoCoding();
     }
 
     public ImageGeometry getSceneImageGeometry() {
@@ -801,15 +795,15 @@ public class Product extends ProductNode {
         if (sceneImageGeometryInvalidated) {
             recomputeSceneImageGeometry();
         }
-        return sceneRasterSize != null ? (Dimension) sceneRasterSize.clone() : null;
+        return sceneImageGeometry.getSize();
     }
 
     // todo - do we want this method at all? Maybe useful to init size after no-size constructor before bands are added
     public void setSceneRasterSize(Dimension sceneRasterSize) {
-        Assert.state(!sceneImageGeometryInvalidated && this.sceneRasterSize == null);
-        if (!ObjectUtils.equalObjects(this.sceneRasterSize, sceneRasterSize)) {
-            Dimension oldSceneRasterSize = this.sceneRasterSize;
-            this.sceneRasterSize = sceneRasterSize != null ? (Dimension) sceneRasterSize.clone() : null;
+        Assert.state(!sceneImageGeometryInvalidated && this.sceneImageGeometry.getSize() == null);
+        if (!ObjectUtils.equalObjects(this.sceneImageGeometry.getSize(), sceneRasterSize)) {
+            Dimension oldSceneRasterSize = this.sceneImageGeometry.getSize();
+            sceneImageGeometry.setSize(sceneRasterSize);
             sceneImageGeometryInvalidated = false;
             fireNodeChanged(this, "sceneRasterSize", oldSceneRasterSize, sceneRasterSize);
         }
@@ -822,7 +816,7 @@ public class Product extends ProductNode {
         if (sceneImageGeometryInvalidated) {
             recomputeSceneImageGeometry();
         }
-        return sceneRasterSize != null ? sceneRasterSize.width : 0;
+        return sceneImageGeometry.getWidth();
     }
 
     /**
@@ -832,7 +826,7 @@ public class Product extends ProductNode {
         if (sceneImageGeometryInvalidated) {
             recomputeSceneImageGeometry();
         }
-        return sceneRasterSize != null ? sceneRasterSize.height : 0;
+        return sceneImageGeometry.getHeight();
     }
 
     /**
@@ -881,7 +875,7 @@ public class Product extends ProductNode {
      * @return The scene tile size, can be <code>null</null> if not specified.
      */
     public Dimension getSceneTileSize() {
-        return sceneTileSize;
+        return sceneImageGeometry.getTileSize();
     }
 
     /**
@@ -890,7 +884,7 @@ public class Product extends ProductNode {
      * @param sceneTileSize The scene tile size, may be <code>null</null>.
      */
     public void setSceneTileSize(Dimension sceneTileSize) {
-        this.sceneTileSize = sceneTileSize;
+        sceneImageGeometry.setTileSize(sceneTileSize);
     }
 
     /**
@@ -2260,9 +2254,9 @@ public class Product extends ProductNode {
     }
 
     private void maybeInvalidateSceneRasterGeometry(RasterDataNode rasterDataNode) {
-        if (sceneImageGeometryInvalidated || !rasterDataNode.getRasterSize().equals(sceneRasterSize)) {
+        if (sceneImageGeometryInvalidated || !rasterDataNode.getRasterSize().equals(sceneImageGeometry.getSize())) {
             sceneImageGeometryInvalidated = true;
-            sceneRasterSize = null;
+            sceneImageGeometry.setSize(null);
         }
     }
 
@@ -2278,7 +2272,7 @@ public class Product extends ProductNode {
             dimension.height = Math.max(dimension.height, band.getRasterHeight());
         }
         // todo - [multisize_products] also loop through tiePointGrids, masks
-        sceneRasterSize = dimension;
+        sceneImageGeometry.setSize(dimension);
         sceneImageGeometryInvalidated = false;
     }
 
