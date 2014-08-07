@@ -115,7 +115,7 @@ public class Product extends ProductNode {
     /**
      * The geo-coding of this product, if any.
      */
-    private GeoCoding geoCoding;
+    private GeoCoding sceneGeoCoding;
 
     /**
      * The list of product listeners.
@@ -128,15 +128,15 @@ public class Product extends ProductNode {
     private String productType;
 
     /**
-     * The product's scene raster size in pixels.
+     * Holds the information of the scene raster geometry.
      */
-    private Dimension sceneRasterSize;
+    private SceneImageGeometry sceneImageGeometry;
 
     /**
      * Has the product's scene raster geometry been invalidated?
      * Used to determine whether the geometry must be recomputed.
      */
-    private boolean sceneRasterGeometryInvalidated;
+    private boolean sceneImageGeometryInvalidated;
 
     /**
      * The start time of the first raster line.
@@ -173,7 +173,6 @@ public class Product extends ProductNode {
 
     private String quicklookBandName;
 
-    private Dimension preferredTileSize;
     private AutoGrouping autoGrouping;
     private final PlacemarkGroup pinGroup;
     private final PlacemarkGroup gcpGroup;
@@ -252,7 +251,7 @@ public class Product extends ProductNode {
         Guardian.assertNotNullOrEmpty("type", type);
         this.productType = type;
         this.reader = reader;
-        this.sceneRasterSize = sceneRasterSize;
+        this.sceneImageGeometry = new SceneImageGeometry(sceneRasterSize);
         this.metadataRoot = new MetadataElement(METADATA_ROOT_NAME);
         this.metadataRoot.setOwner(this);
 
@@ -387,7 +386,7 @@ public class Product extends ProductNode {
             final PixelPos pixelPos = pin.getPixelPos();
             GeoPos geoPos = pin.getGeoPos();
             if (pixelPos != null) {
-                geoPos = pinDescriptor.updateGeoPos(getGeoCoding(), pixelPos, geoPos);
+                geoPos = pinDescriptor.updateGeoPos(getSceneGeoCoding(), pixelPos, geoPos);
             }
             pin.setGeoPos(geoPos);
         }
@@ -650,9 +649,9 @@ public class Product extends ProductNode {
         pointingFactory = null;
         productManager = null;
 
-        if (geoCoding != null) {
-            geoCoding.dispose();
-            geoCoding = null;
+        if (sceneImageGeometry != null) {
+            sceneImageGeometry.dispose();
+            sceneImageGeometry = null;
         }
 
         if (validMasks != null) {
@@ -692,19 +691,11 @@ public class Product extends ProductNode {
      * Geo-codes this data product.
      *
      * @param geoCoding the geo-coding, if <code>null</code> geo-coding is removed
-     * @throws IllegalArgumentException <br>- if the given <code>GeoCoding</code> is a <code>TiePointGeoCoding</code>
-     *                                  and <code>latGrid</code> or <code>lonGrid</code> are not instances of tie point
-     *                                  grids in this product. <br>- if the given <code>GeoCoding</code> is a
-     *                                  <code>MapGeoCoding</code> and its <code>MapInfo</code> is <code>null</code>
-     *                                  <br>- if the given <code>GeoCoding</code> is a <code>MapGeoCoding</code> and the
-     *                                  <code>sceneWith</code> or <code>sceneHeight</code> of its <code>MapInfo</code>
-     *                                  is not equal to this products <code>sceneRasterWidth</code> or
-     *                                  <code>sceneRasterHeight</code>
      */
-    public void setGeoCoding(final GeoCoding geoCoding) {
+    public void setSceneGeoCoding(final GeoCoding geoCoding) {
         checkGeoCoding(geoCoding);
-        if (!ObjectUtils.equalObjects(this.geoCoding, geoCoding)) {
-            this.geoCoding = geoCoding;
+        if (!ObjectUtils.equalObjects(sceneImageGeometry.getGeoCoding(), geoCoding)) {
+            sceneImageGeometry.setGeoCoding(geoCoding);
             fireProductNodeChanged(PROPERTY_NAME_GEOCODING);
             setModified(true);
         }
@@ -715,8 +706,45 @@ public class Product extends ProductNode {
      *
      * @return the geo-coding, can be <code>null</code> if this product is not geo-coded.
      */
+    public GeoCoding getSceneGeoCoding() {
+        return sceneImageGeometry.getGeoCoding();
+    }
+
+    public ImageGeometry getSceneImageGeometry() {
+        if (sceneImageGeometryInvalidated) {
+            recomputeSceneImageGeometry();
+        }
+        return sceneImageGeometry;
+    }
+
+    /**
+     * Geo-codes this data product.
+     *
+     * @param geoCoding the geo-coding, if <code>null</code> geo-coding is removed
+     * @throws IllegalArgumentException <br>- if the given <code>GeoCoding</code> is a <code>TiePointGeoCoding</code>
+     *                                  and <code>latGrid</code> or <code>lonGrid</code> are not instances of tie point
+     *                                  grids in this product. <br>- if the given <code>GeoCoding</code> is a
+     *                                  <code>MapGeoCoding</code> and its <code>MapInfo</code> is <code>null</code>
+     *                                  <br>- if the given <code>GeoCoding</code> is a <code>MapGeoCoding</code> and the
+     *                                  <code>sceneWith</code> or <code>sceneHeight</code> of its <code>MapInfo</code>
+     *                                  is not equal to this products <code>sceneRasterWidth</code> or
+     *                                  <code>sceneRasterHeight</code>
+     * @deprecated use {@link #setSceneGeoCoding(GeoCoding)} instead
+     */
+    @Deprecated
+    public void setGeoCoding(final GeoCoding geoCoding) {
+        setSceneGeoCoding(geoCoding);
+    }
+
+    /**
+     * Returns the geo-coding used for this data product.
+     *
+     * @return the geo-coding, can be <code>null</code> if this product is not geo-coded.
+     * @deprecated use {@link #getSceneGeoCoding()} instead
+     */
+    @Deprecated
     public GeoCoding getGeoCoding() {
-        return geoCoding;
+        return getSceneGeoCoding();
     }
 
     /**
@@ -727,7 +755,7 @@ public class Product extends ProductNode {
      * @return true, if so
      */
     public boolean isUsingSingleGeoCoding() {
-        final GeoCoding geoCoding = getGeoCoding();
+        final GeoCoding geoCoding = getSceneGeoCoding();
         if (geoCoding == null) {
             return false;
         }
@@ -764,19 +792,19 @@ public class Product extends ProductNode {
     }
 
     public Dimension getSceneRasterSize() {
-        if (sceneRasterGeometryInvalidated) {
-            recomputeSceneRasterGeometry();
+        if (sceneImageGeometryInvalidated) {
+            recomputeSceneImageGeometry();
         }
-        return sceneRasterSize != null ? (Dimension) sceneRasterSize.clone() : null;
+        return sceneImageGeometry.getSize();
     }
 
     // todo - do we want this method at all? Maybe useful to init size after no-size constructor before bands are added
     public void setSceneRasterSize(Dimension sceneRasterSize) {
-        Assert.state(!sceneRasterGeometryInvalidated && this.sceneRasterSize == null);
-        if (!ObjectUtils.equalObjects(this.sceneRasterSize, sceneRasterSize)) {
-            Dimension oldSceneRasterSize = this.sceneRasterSize;
-            this.sceneRasterSize = sceneRasterSize != null ? (Dimension) sceneRasterSize.clone() : null;
-            sceneRasterGeometryInvalidated = false;
+        Assert.state(!sceneImageGeometryInvalidated && this.sceneImageGeometry.getSize() == null);
+        if (!ObjectUtils.equalObjects(this.sceneImageGeometry.getSize(), sceneRasterSize)) {
+            Dimension oldSceneRasterSize = this.sceneImageGeometry.getSize();
+            sceneImageGeometry.setSize(sceneRasterSize);
+            sceneImageGeometryInvalidated = false;
             fireNodeChanged(this, "sceneRasterSize", oldSceneRasterSize, sceneRasterSize);
         }
     }
@@ -785,20 +813,78 @@ public class Product extends ProductNode {
      * @return The scene raster width in pixels, or 0 if the scene raster geometry is not (yet) determined.
      */
     public int getSceneRasterWidth() {
-        if (sceneRasterGeometryInvalidated) {
-            recomputeSceneRasterGeometry();
+        if (sceneImageGeometryInvalidated) {
+            recomputeSceneImageGeometry();
         }
-        return sceneRasterSize != null ? sceneRasterSize.width : 0;
+        return sceneImageGeometry.getWidth();
     }
 
     /**
      * @return The scene raster height in pixels, or 0 if the scene raster geometry is not (yet) determined.
      */
     public int getSceneRasterHeight() {
-        if (sceneRasterGeometryInvalidated) {
-            recomputeSceneRasterGeometry();
+        if (sceneImageGeometryInvalidated) {
+            recomputeSceneImageGeometry();
         }
-        return sceneRasterSize != null ? sceneRasterSize.height : 0;
+        return sceneImageGeometry.getHeight();
+    }
+
+    /**
+     * Gets the preferred tile size which may be used for a the {@link java.awt.image.RenderedImage rendered image}
+     * created for a {@link RasterDataNode} of this product.
+     *
+     * @return the preferred tile size, may be <code>null</null> if not specified
+     * @see RasterDataNode#getSourceImage()
+     * @see RasterDataNode#setSourceImage(java.awt.image.RenderedImage)
+     * @deprecated since SNAP 0.5. Use {@link #getSceneTileSize()}
+     */
+    @Deprecated
+    public Dimension getPreferredTileSize() {
+        return getSceneTileSize();
+    }
+
+    /**
+     * Sets the preferred tile size which may be used for a the {@link java.awt.image.RenderedImage rendered image}
+     * created for a {@link RasterDataNode} of this product.
+     *
+     * @param tileWidth  the preferred tile width
+     * @param tileHeight the preferred tile height
+     * @see #setPreferredTileSize(java.awt.Dimension)
+     * @deprecated since SNAP 0.5. Use {@link #setSceneTileSize(Dimension)}
+     */
+    @Deprecated
+    public void setPreferredTileSize(int tileWidth, int tileHeight) {
+        setSceneTileSize(new Dimension(tileWidth, tileHeight));
+    }
+
+    /**
+     * Sets the preferred tile size which may be used for a the {@link java.awt.image.RenderedImage rendered image}
+     * created for a {@link RasterDataNode} of this product.
+     *
+     * @param preferredTileSize the preferred tile size, may be <code>null</null> if not specified
+     * @see RasterDataNode#getSourceImage()
+     * @see RasterDataNode#setSourceImage(java.awt.image.RenderedImage)
+     * @deprecated since SNAP 0.5. Use {@link #setSceneTileSize(Dimension)}
+     */
+    @Deprecated
+    public void setPreferredTileSize(Dimension preferredTileSize) {
+        setSceneTileSize(preferredTileSize);
+    }
+
+    /**
+     * @return The scene tile size, can be <code>null</null> if not specified.
+     */
+    public Dimension getSceneTileSize() {
+        return sceneImageGeometry.getTileSize();
+    }
+
+    /**
+     * Sets the scene tile size.
+     *
+     * @param sceneTileSize The scene tile size, may be <code>null</null>.
+     */
+    public void setSceneTileSize(Dimension sceneTileSize) {
+        sceneImageGeometry.setTileSize(sceneTileSize);
     }
 
     /**
@@ -1020,7 +1106,7 @@ public class Product extends ProductNode {
     /**
      * Adds the given band to this product.
      *
-     * @param band the band to added, must not be <code>null</code>
+     * @param band the band to be added, must not be <code>null</code>
      */
     public void addBand(final Band band) {
         Assert.notNull(band, "band");
@@ -1331,11 +1417,11 @@ public class Product extends ProductNode {
         if (getSceneRasterHeight() != product.getSceneRasterHeight()) {
             return false;
         }
-        if (getGeoCoding() == null && product.getGeoCoding() != null) {
+        if (getSceneGeoCoding() == null && product.getSceneGeoCoding() != null) {
             return false;
         }
-        if (getGeoCoding() != null) {
-            if (product.getGeoCoding() == null) {
+        if (getSceneGeoCoding() != null) {
+            if (product.getSceneGeoCoding() == null) {
                 return false;
             }
 
@@ -1345,32 +1431,32 @@ public class Product extends ProductNode {
 
             pixelPos.x = 0.5f;
             pixelPos.y = 0.5f;
-            getGeoCoding().getGeoPos(pixelPos, geoPos1);
-            product.getGeoCoding().getGeoPos(pixelPos, geoPos2);
+            getSceneGeoCoding().getGeoPos(pixelPos, geoPos1);
+            product.getSceneGeoCoding().getGeoPos(pixelPos, geoPos2);
             if (!equalsLatLon(geoPos1, geoPos2, eps)) {
                 return false;
             }
 
             pixelPos.x = getSceneRasterWidth() - 1 + 0.5f;
             pixelPos.y = 0.5f;
-            getGeoCoding().getGeoPos(pixelPos, geoPos1);
-            product.getGeoCoding().getGeoPos(pixelPos, geoPos2);
+            getSceneGeoCoding().getGeoPos(pixelPos, geoPos1);
+            product.getSceneGeoCoding().getGeoPos(pixelPos, geoPos2);
             if (!equalsLatLon(geoPos1, geoPos2, eps)) {
                 return false;
             }
 
             pixelPos.x = 0.5f;
             pixelPos.y = getSceneRasterHeight() - 1 + 0.5f;
-            getGeoCoding().getGeoPos(pixelPos, geoPos1);
-            product.getGeoCoding().getGeoPos(pixelPos, geoPos2);
+            getSceneGeoCoding().getGeoPos(pixelPos, geoPos1);
+            product.getSceneGeoCoding().getGeoPos(pixelPos, geoPos2);
             if (!equalsLatLon(geoPos1, geoPos2, eps)) {
                 return false;
             }
 
             pixelPos.x = getSceneRasterWidth() - 1 + 0.5f;
             pixelPos.y = getSceneRasterHeight() - 1 + 0.5f;
-            getGeoCoding().getGeoPos(pixelPos, geoPos1);
-            product.getGeoCoding().getGeoPos(pixelPos, geoPos2);
+            getSceneGeoCoding().getGeoPos(pixelPos, geoPos1);
+            product.getSceneGeoCoding().getGeoPos(pixelPos, geoPos2);
             if (!equalsLatLon(geoPos1, geoPos2, eps)) {
                 return false;
             }
@@ -1782,9 +1868,9 @@ public class Product extends ProductNode {
         sb.append(pixelY);
         sb.append("\tpixel\n");
 
-        if (getGeoCoding() != null) {
+        if (getSceneGeoCoding() != null) {
             final PixelPos pt = new PixelPos(pixelX + 0.5f, pixelY + 0.5f);
-            final GeoPos geoPos = getGeoCoding().getGeoPos(pt, null);
+            final GeoPos geoPos = getSceneGeoCoding().getGeoPos(pt, null);
 
             sb.append("Longitude:\t");
             sb.append(geoPos.getLonString());
@@ -1794,8 +1880,8 @@ public class Product extends ProductNode {
             sb.append(geoPos.getLatString());
             sb.append("\tdegree\n");
 
-            if (getGeoCoding() instanceof MapGeoCoding) {
-                final MapGeoCoding mapGeoCoding = (MapGeoCoding) getGeoCoding();
+            if (getSceneGeoCoding() instanceof MapGeoCoding) {
+                final MapGeoCoding mapGeoCoding = (MapGeoCoding) getSceneGeoCoding();
                 final MapProjection mapProjection = mapGeoCoding.getMapInfo().getMapProjection();
                 final MapTransform mapTransform = mapProjection.getMapTransform();
                 final Point2D mapPoint = mapTransform.forward(geoPos, null);
@@ -2024,43 +2110,6 @@ public class Product extends ProductNode {
         return symbolName.indexOf('.') != -1;
     }
 
-
-    /**
-     * Gets the preferred tile size which may be used for a the {@link java.awt.image.RenderedImage rendered image}
-     * created for a {@link RasterDataNode} of this product.
-     *
-     * @return the preferred tile size, may be <code>null</null> if not specified
-     * @see RasterDataNode#getSourceImage()
-     * @see RasterDataNode#setSourceImage(java.awt.image.RenderedImage)
-     */
-    public Dimension getPreferredTileSize() {
-        return preferredTileSize;
-    }
-
-    /**
-     * Sets the preferred tile size which may be used for a the {@link java.awt.image.RenderedImage rendered image}
-     * created for a {@link RasterDataNode} of this product.
-     *
-     * @param tileWidth  the preferred tile width
-     * @param tileHeight the preferred tile height
-     * @see #setPreferredTileSize(java.awt.Dimension)
-     */
-    public void setPreferredTileSize(int tileWidth, int tileHeight) {
-        setPreferredTileSize(new Dimension(tileWidth, tileHeight));
-    }
-
-    /**
-     * Sets the preferred tile size which may be used for a the {@link java.awt.image.RenderedImage rendered image}
-     * created for a {@link RasterDataNode} of this product.
-     *
-     * @param preferredTileSize the preferred tile size, may be <code>null</null> if not specified
-     * @see RasterDataNode#getSourceImage()
-     * @see RasterDataNode#setSourceImage(java.awt.image.RenderedImage)
-     */
-    public void setPreferredTileSize(Dimension preferredTileSize) {
-        this.preferredTileSize = preferredTileSize;
-    }
-
     /**
      * Returns the names of all flags of all flag datasets contained this product.
      * <p/>
@@ -2205,13 +2254,13 @@ public class Product extends ProductNode {
     }
 
     private void maybeInvalidateSceneRasterGeometry(RasterDataNode rasterDataNode) {
-        if (sceneRasterGeometryInvalidated || !rasterDataNode.getRasterSize().equals(sceneRasterSize)) {
-            sceneRasterGeometryInvalidated = true;
-            sceneRasterSize = null;
+        if (sceneImageGeometryInvalidated || !rasterDataNode.getRasterSize().equals(sceneImageGeometry.getSize())) {
+            sceneImageGeometryInvalidated = true;
+            sceneImageGeometry.setSize(null);
         }
     }
 
-    private void recomputeSceneRasterGeometry() {
+    private void recomputeSceneImageGeometry() {
         // todo - [multisize_products] replace this numb algorithm by something reasonable that takes the bands' geographical coverage into account (nf)
         Band[] bands = getBands();
         Dimension dimension = null;
@@ -2223,8 +2272,8 @@ public class Product extends ProductNode {
             dimension.height = Math.max(dimension.height, band.getRasterHeight());
         }
         // todo - [multisize_products] also loop through tiePointGrids, masks
-        sceneRasterSize = dimension;
-        sceneRasterGeometryInvalidated = false;
+        sceneImageGeometry.setSize(dimension);
+        sceneImageGeometryInvalidated = false;
     }
 
     /**

@@ -18,7 +18,7 @@ package org.esa.beam.dataio.dimap;
 import org.esa.beam.framework.datamodel.Band;
 import org.esa.beam.framework.datamodel.CrsGeoCoding;
 import org.esa.beam.framework.datamodel.GeoPos;
-import org.esa.beam.framework.datamodel.ImageGeometry;
+import org.esa.beam.framework.datamodel.ReprojectionImageGeometry;
 import org.esa.beam.framework.datamodel.MapGeoCoding;
 import org.esa.beam.framework.datamodel.PixelPos;
 import org.esa.beam.framework.datamodel.Product;
@@ -321,9 +321,9 @@ public class EnviHeader {
             final CrsGeoCoding crsGeoCoding = (CrsGeoCoding) product.getGeoCoding();
             final CoordinateReferenceSystem crs = crsGeoCoding.getMapCRS();
 
-            final ImageGeometry imgGeom = ImageGeometry.createTargetGeometry(product, crs,
-                    null, null, null, null,
-                    null, null, null, null, null);
+            final ReprojectionImageGeometry imgGeom = ReprojectionImageGeometry.createTargetGeometry(product, crs,
+                                                                                                     null, null, null, null,
+                                                                                                     null, null, null, null, null);
 
             final String crsName = crs.getName().toString().toUpperCase();
             if (crsName.equals("WGS84(DD)")) {

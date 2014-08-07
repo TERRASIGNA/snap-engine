@@ -1,15 +1,13 @@
 package org.esa.beam.framework.datamodel;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
 import static org.junit.Assert.*;
 
-public class ImageGeometryTest {
+public class ReprojectionImageGeometryTest {
 
     @Test
     public void testImageToMapTransform() throws Exception {
@@ -61,13 +59,13 @@ public class ImageGeometryTest {
         double orientation = 0.0;
         double northing = 0.0;
 
-        return ImageGeometry.createImageToMapTransform(referencePixelX,
-                                                       referencePixelY,
-                                                       easting,
-                                                       northing,
-                                                       pixelSizeX,
-                                                       pixelSizeY,
-                                                       orientation);
+        return ReprojectionImageGeometry.createImageToMapTransform(referencePixelX,
+                                                                   referencePixelY,
+                                                                   easting,
+                                                                   northing,
+                                                                   pixelSizeX,
+                                                                   pixelSizeY,
+                                                                   orientation);
     }
 
 }

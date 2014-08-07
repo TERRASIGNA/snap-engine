@@ -19,7 +19,7 @@ import com.bc.ceres.binding.Property;
 import com.bc.ceres.binding.PropertyContainer;
 import com.bc.ceres.binding.PropertySet;
 import com.bc.ceres.binding.ValueSet;
-import org.esa.beam.framework.datamodel.ImageGeometry;
+import org.esa.beam.framework.datamodel.ReprojectionImageGeometry;
 import org.esa.beam.framework.datamodel.Product;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
@@ -52,13 +52,13 @@ public class OutputGeometryFormModel {
     }
 
     public OutputGeometryFormModel(Product sourceProduct, Product collocationProduct) {
-        this(sourceProduct, ImageGeometry.createCollocationTargetGeometry(sourceProduct, collocationProduct));
+        this(sourceProduct, ReprojectionImageGeometry.createCollocationTargetGeometry(sourceProduct, collocationProduct));
     }
 
     public OutputGeometryFormModel(Product sourceProduct, CoordinateReferenceSystem targetCrs) {
-        this(sourceProduct, ImageGeometry.createTargetGeometry(sourceProduct, targetCrs,
-                null, null, null, null,
-                null, null, null, null, null));
+        this(sourceProduct, ReprojectionImageGeometry.createTargetGeometry(sourceProduct, targetCrs,
+                                                                           null, null, null, null,
+                                                                           null, null, null, null, null));
     }
 
     public OutputGeometryFormModel(OutputGeometryFormModel formModel) {
@@ -69,12 +69,12 @@ public class OutputGeometryFormModel {
              formModel.getPropertySet());
     }
 
-    private OutputGeometryFormModel(Product sourceProduct, ImageGeometry imageGeometry) {
+    private OutputGeometryFormModel(Product sourceProduct, ReprojectionImageGeometry reprojectionImageGeometry) {
         init(sourceProduct,
-             imageGeometry.getMapCrs(),
+             reprojectionImageGeometry.getMapCrs(),
              FIT_PRODUCT_SIZE_DEFAULT,
              REFERENCE_PIXEL_DEFAULT,
-             PropertyContainer.createObjectBacked(imageGeometry));
+             PropertyContainer.createObjectBacked(reprojectionImageGeometry));
     }
 
     private void init(Product sourceProduct, CoordinateReferenceSystem targetCrs, boolean fitProductSize, int referencePixelLocation, PropertySet sourcePropertySet) {
@@ -83,7 +83,7 @@ public class OutputGeometryFormModel {
         this.fitProductSize = fitProductSize;
         this.referencePixelLocation = referencePixelLocation;
 
-        this.propertyContainer = PropertyContainer.createValueBacked(ImageGeometry.class);
+        this.propertyContainer = PropertyContainer.createValueBacked(ReprojectionImageGeometry.class);
         configurePropertyContainer(propertyContainer);
 
         Property[] properties = sourcePropertySet.getProperties();
@@ -110,7 +110,7 @@ public class OutputGeometryFormModel {
         setAxisUnits(propertyContainer);
     }
 
-    public void resetToDefaults(ImageGeometry ig) {
+    public void resetToDefaults(ReprojectionImageGeometry ig) {
         PropertyContainer pc =  PropertyContainer.createObjectBacked(ig);
         Property[] properties = pc.getProperties();
         for (Property property : properties) {
@@ -145,7 +145,7 @@ public class OutputGeometryFormModel {
         if (targetCrs != null && sourceProduct != null) {
             Double pixelSizeX = (Double) propertyContainer.getValue("pixelSizeX");
             Double pixelSizeY = (Double) propertyContainer.getValue("pixelSizeY");
-            Rectangle productSize = ImageGeometry.calculateProductSize(sourceProduct, targetCrs, pixelSizeX, pixelSizeY);
+            Rectangle productSize = ReprojectionImageGeometry.calculateProductSize(sourceProduct, targetCrs, pixelSizeX, pixelSizeY);
             propertyContainer.setValue("width", productSize.width);
             propertyContainer.setValue("height", productSize.height);
         }

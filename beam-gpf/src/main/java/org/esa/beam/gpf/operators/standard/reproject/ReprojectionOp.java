@@ -25,7 +25,7 @@ import org.esa.beam.framework.datamodel.CrsGeoCoding;
 import org.esa.beam.framework.datamodel.FlagCoding;
 import org.esa.beam.framework.datamodel.GeoCoding;
 import org.esa.beam.framework.datamodel.GeoPos;
-import org.esa.beam.framework.datamodel.ImageGeometry;
+import org.esa.beam.framework.datamodel.ReprojectionImageGeometry;
 import org.esa.beam.framework.datamodel.ImageInfo;
 import org.esa.beam.framework.datamodel.IndexCoding;
 import org.esa.beam.framework.datamodel.Product;
@@ -224,12 +224,12 @@ public class ReprojectionOp extends Operator {
         /*
         * 2. Compute the target geometry
         */
-        ImageGeometry targetImageGeometry = createImageGeometry(targetCrs);
+        ReprojectionImageGeometry targetReprojectionImageGeometry = createImageGeometry(targetCrs);
 
         /*
         * 3. Create the target product
         */
-        Rectangle targetRect = targetImageGeometry.getImageRect();
+        Rectangle targetRect = targetReprojectionImageGeometry.getImageRect();
         targetProduct = new Product("projected_" + sourceProduct.getName(),
                                     sourceProduct.getProductType(),
                                     targetRect.width,
@@ -260,9 +260,9 @@ public class ReprojectionOp extends Operator {
         ProductUtils.copyFlagCodings(sourceProduct, targetProduct);
         copyIndexCoding();
         try {
-            targetProduct.setGeoCoding(new CrsGeoCoding(targetImageGeometry.getMapCrs(),
+            targetProduct.setGeoCoding(new CrsGeoCoding(targetReprojectionImageGeometry.getMapCrs(),
                                                         targetRect,
-                                                        targetImageGeometry.getImage2MapTransform()));
+                                                        targetReprojectionImageGeometry.getImage2MapTransform()));
         } catch (Exception e) {
             throw new OperatorException(e);
         }
@@ -463,7 +463,7 @@ public class ReprojectionOp extends Operator {
                 i2mSource.concatenate(srcModel.getModelToImageTransform(0));
                 i2mSource.concatenate(i2mSourceProduct);
 
-                ImageGeometry sourceGeometry = new ImageGeometry(sourceBounds,
+                ReprojectionImageGeometry sourceGeometry = new ReprojectionImageGeometry(sourceBounds,
                                                                  sourceModelCrs,
                                                                  i2mSource);
 
@@ -481,7 +481,7 @@ public class ReprojectionOp extends Operator {
                 i2mTarget.concatenate(getModel().getModelToImageTransform(0));
                 i2mTarget.concatenate(i2mTargetProduct);
 
-                ImageGeometry targetGeometry = new ImageGeometry(targetBounds,
+                ReprojectionImageGeometry targetGeometry = new ReprojectionImageGeometry(targetBounds,
                                                                  targetModelCrs,
                                                                  i2mTarget);
                 Hints hints = new Hints(JAI.KEY_IMAGE_LAYOUT, imageLayout);
@@ -637,23 +637,23 @@ public class ReprojectionOp extends Operator {
         }
     }
 
-    private ImageGeometry createImageGeometry(CoordinateReferenceSystem targetCrs) {
-        ImageGeometry imageGeometry;
+    private ReprojectionImageGeometry createImageGeometry(CoordinateReferenceSystem targetCrs) {
+        ReprojectionImageGeometry reprojectionImageGeometry;
         if (collocationProduct != null) {
-            imageGeometry = ImageGeometry.createCollocationTargetGeometry(sourceProduct, collocationProduct);
+            reprojectionImageGeometry = ReprojectionImageGeometry.createCollocationTargetGeometry(sourceProduct, collocationProduct);
         } else {
-            imageGeometry = ImageGeometry.createTargetGeometry(sourceProduct, targetCrs,
-                                                               pixelSizeX, pixelSizeY,
-                                                               width, height, orientation,
-                                                               easting, northing,
-                                                               referencePixelX, referencePixelY);
+            reprojectionImageGeometry = ReprojectionImageGeometry.createTargetGeometry(sourceProduct, targetCrs,
+                                                                                       pixelSizeX, pixelSizeY,
+                                                                                       width, height, orientation,
+                                                                                       easting, northing,
+                                                                                       referencePixelX, referencePixelY);
             final AxisDirection targetAxisDirection = targetCrs.getCoordinateSystem().getAxis(1).getDirection();
             // When collocating the Y-Axis is DISPLAY_DOWN, then pixelSizeY must not negated
             if (!AxisDirection.DISPLAY_DOWN.equals(targetAxisDirection)) {
-                imageGeometry.changeYAxisDirection();
+                reprojectionImageGeometry.changeYAxisDirection();
             }
         }
-        return imageGeometry;
+        return reprojectionImageGeometry;
     }
 
     private void addDeltaBands() {

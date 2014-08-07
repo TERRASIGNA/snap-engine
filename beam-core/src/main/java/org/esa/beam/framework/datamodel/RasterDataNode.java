@@ -101,6 +101,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      * The raster's height.
      */
     private final int rasterHeight;
+    private Dimension tileSize;
 
     private double scalingFactor;
     private double scalingOffset;
@@ -178,7 +179,9 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
     /**
      * @return The width of the product's scene raster in pixels. By default, the method simply
      *         returns <code>getRasterWidth()</code>.
+     * @deprecated since SNAP 0.5. use {@link Product#getSceneRasterWidth() getProduct().getSceneRasterWidth()} instead
      */
+    @Deprecated
     public int getSceneRasterWidth() {
         return getRasterWidth();
     }
@@ -186,14 +189,19 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
     /**
      * @return The height of the product's scene raster in pixels. By default, the method simply
      *         returns <code>getRasterHeight()</code>.
+     * @deprecated since SNAP 0.5. use {@link Product#getSceneRasterHeight()}  getProduct().getSceneRasterHeight()} instead
      */
+    @Deprecated
     public int getSceneRasterHeight() {
         return getRasterHeight();
     }
 
     /**
      * @return The size of the product's scene raster in pixels.
+     *
+     * @deprecated since SNAP 0.5. use {@link Product#getSceneRasterSize()}  getProduct().getSceneRasterSize()} instead
      */
+    @Deprecated
     public Dimension getSceneRasterSize() {
         return new Dimension(getSceneRasterWidth(), getSceneRasterHeight());
     }
@@ -217,6 +225,22 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      */
     public Dimension getRasterSize() {
         return new Dimension(rasterWidth, rasterHeight);
+    }
+
+    /**
+     * @return The tile size of the native raster in pixels.
+     */
+    public Dimension getTileSize() {
+        return tileSize;
+    }
+
+    /**
+     * Sets the tile size of the native raster.
+     *
+     * @param tileSize the native tile size, may be <code>null</null> if not specified
+     */
+    public void setTileSize(Dimension tileSize) {
+        this.tileSize = tileSize;
     }
 
     @Override
@@ -718,10 +742,10 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
     }
 
     /**
-     * Gets a raster data holding this dataset's pixel data for an entire product scene. If the data has'nt been loaded
+     * Gets a raster data holding this dataset's pixel data for an entire product scene. If the data hasn't been loaded
      * so far the method returns <code>null</code>.
      * <p/>
-     * <p>In oposite to the <code>getRasterData</code> method, this method returns raster data that has at least
+     * <p>In opposite to the <code>getRasterData</code> method, this method returns raster data that has at least
      * <code>getBandOutputRasterWidth()*getBandOutputRasterHeight()</code> elements of the given data type to store the
      * scene's pixels.
      *
@@ -731,7 +755,9 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      * @see #getRasterHeight
      * @see #getSceneRasterWidth
      * @see #getSceneRasterHeight
+     * @deprecated since SNAP 0.5. Use ImageGeometryTransform instead
      */
+    @Deprecated
     public abstract ProductData getSceneRasterData();
 
 

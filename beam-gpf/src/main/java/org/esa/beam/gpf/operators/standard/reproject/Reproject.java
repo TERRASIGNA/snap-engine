@@ -16,7 +16,7 @@
 package org.esa.beam.gpf.operators.standard.reproject;
 
 
-import org.esa.beam.framework.datamodel.ImageGeometry;
+import org.esa.beam.framework.datamodel.ReprojectionImageGeometry;
 import org.geotools.factory.Hints;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.ReferencingFactoryFinder;
@@ -97,8 +97,8 @@ final class Reproject {
      * @throws TransformException if a transformation failed.
      */
     public RenderedImage reproject(RenderedImage sourceImage,
-                                   ImageGeometry sourceGeometry,
-                                   ImageGeometry targetGeometry,
+                                   ReprojectionImageGeometry sourceGeometry,
+                                   ReprojectionImageGeometry targetGeometry,
                                    double backgroundValue,
                                    final Interpolation interpolation,
                                    final Hints hints, int targetLevel, Dimension tileSize) throws FactoryException,
