@@ -2262,16 +2262,20 @@ public class Product extends ProductNode {
 
     private void recomputeSceneImageGeometry() {
         // todo - [multisize_products] replace this numb algorithm by something reasonable that takes the bands' geographical coverage into account (nf)
-        Band[] bands = getBands();
+        RasterDataNode[] bands = getBands();
+        RasterDataNode[] grids = getTiePointGrids();
+        RasterDataNode[] masks = getMaskGroup().toArray(new Mask[0]);
+        List<RasterDataNode> rasters = Arrays.asList(bands);
+        rasters.addAll(Arrays.asList(grids));
+        rasters.addAll(Arrays.asList(masks));
         Dimension dimension = null;
-        for (Band band : bands) {
+        for (RasterDataNode band : rasters) {
             if (dimension == null) {
                 dimension = new Dimension();
             }
             dimension.width = Math.max(dimension.width, band.getRasterWidth());
             dimension.height = Math.max(dimension.height, band.getRasterHeight());
         }
-        // todo - [multisize_products] also loop through tiePointGrids, masks
         sceneImageGeometry.setSize(dimension);
         sceneImageGeometryInvalidated = false;
     }
