@@ -138,6 +138,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
     private MultiLevelImage validMaskImage;
 
     private ROI validMaskROI;
+    private ImageGeometryTransform imageGeometryTransform;
 
     /**
      * Constructs an object of type <code>RasterDataNode</code>.
@@ -2154,6 +2155,14 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
             mli = new DefaultMultiLevelImage(new DefaultMultiLevelSource(sourceImage, model));
         }
         return mli;
+    }
+
+    public ImageGeometryTransform getImageGeometryTransform() {
+        return imageGeometryTransform;
+    }
+
+    public void setImageGeometryTransform(ImageGeometryTransform imageGeometryTransform) {
+        this.imageGeometryTransform = imageGeometryTransform;
     }
 
 

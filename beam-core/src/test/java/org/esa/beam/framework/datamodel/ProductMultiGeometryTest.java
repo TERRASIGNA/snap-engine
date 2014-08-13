@@ -7,6 +7,7 @@ import org.opengis.referencing.operation.TransformException;
 
 import javax.media.jai.operator.ConstantDescriptor;
 import java.awt.Dimension;
+import java.awt.image.RenderedImage;
 
 import static org.junit.Assert.*;
 
@@ -51,5 +52,10 @@ public class ProductMultiGeometryTest {
         assertEquals(expectedSceneGeoCoding.getMapCRS().toWKT(), actualSceneGeoCoding.getMapCRS().toWKT());
         assertEquals(expectedSceneGeoCoding.getImageToMapTransform(), actualSceneGeoCoding.getImageToMapTransform());
 
+        ImageGeometry sceneImageGeometry = product.getSceneImageGeometry();
+
+
+        ImageGeometryTransform igt = germany.getImageGeometryTransform();
+        RenderedImage germanyGeoSceneImage = igt.transform(germany.getGeophysicalImage(), germany.getGeoCoding(), sceneImageGeometry);
     }
 }
