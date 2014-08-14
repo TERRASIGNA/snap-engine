@@ -3,7 +3,7 @@ package org.esa.beam.framework.datamodel;
 import java.awt.image.RenderedImage;
 
 /**
- * The <code>GeoCoding</code> interface can be implemented to define different ways of transformation.
+ * The <code>ImageGeometryTransform</code> interface can be implemented to define different ways of transformation.
  * The source image will be transformed (extended, cropped, scaled, etc.) to the provided target image geometry.
  */
 public interface ImageGeometryTransform {
