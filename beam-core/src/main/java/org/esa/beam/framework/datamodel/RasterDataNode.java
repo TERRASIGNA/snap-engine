@@ -198,6 +198,24 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
     }
 
     /**
+     * The {@link ImageGeometryTransform} specifies how to transform an image onto a target geometry.
+     *
+     * @return The {@link ImageGeometryTransform} for transforming this {@link RasterDataNode}
+     */
+    public ImageGeometryTransform getImageGeometryTransform() {
+        return imageGeometryTransform;
+    }
+
+    /**
+     * The {@link ImageGeometryTransform} specifies how to transform an image onto a target geometry.
+     *
+     * @param imageGeometryTransform The {@link ImageGeometryTransform} for transforming this {@link RasterDataNode}
+     */
+    public void setImageGeometryTransform(ImageGeometryTransform imageGeometryTransform) {
+        this.imageGeometryTransform = imageGeometryTransform;
+    }
+
+    /**
      * @return The size of the product's scene raster in pixels.
      *
      * @deprecated since SNAP 0.5. use {@link Product#getSceneRasterSize()}  getProduct().getSceneRasterSize()} instead
@@ -2156,15 +2174,6 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
         }
         return mli;
     }
-
-    public ImageGeometryTransform getImageGeometryTransform() {
-        return imageGeometryTransform;
-    }
-
-    public void setImageGeometryTransform(ImageGeometryTransform imageGeometryTransform) {
-        this.imageGeometryTransform = imageGeometryTransform;
-    }
-
 
     static final class DelegatingValidator implements IndexValidator {
 
