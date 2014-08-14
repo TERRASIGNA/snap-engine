@@ -2265,7 +2265,8 @@ public class Product extends ProductNode {
         RasterDataNode[] bands = getBands();
         RasterDataNode[] grids = getTiePointGrids();
         RasterDataNode[] masks = getMaskGroup().toArray(new Mask[0]);
-        List<RasterDataNode> rasters = Arrays.asList(bands);
+        List<RasterDataNode> rasters = new ArrayList<>();
+        rasters.addAll(Arrays.asList(bands));
         rasters.addAll(Arrays.asList(grids));
         rasters.addAll(Arrays.asList(masks));
         Dimension dimension = null;
