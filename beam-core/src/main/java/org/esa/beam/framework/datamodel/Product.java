@@ -45,12 +45,9 @@ import org.esa.beam.util.StopWatch;
 import org.esa.beam.util.StringUtils;
 import org.esa.beam.util.io.WildcardMatcher;
 import org.esa.beam.util.math.MathUtils;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.operation.TransformException;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
@@ -710,9 +707,6 @@ public class Product extends ProductNode {
      * @return the geo-coding, can be <code>null</code> if this product is not geo-coded.
      */
     public GeoCoding getSceneGeoCoding() {
-        if (sceneImageGeometryInvalidated) {
-            recomputeSceneImageGeometry();
-        }
         return sceneImageGeometry.getGeoCoding();
     }
 
@@ -2274,71 +2268,16 @@ public class Product extends ProductNode {
         List<RasterDataNode> rasters = Arrays.asList(bands);
         rasters.addAll(Arrays.asList(grids));
         rasters.addAll(Arrays.asList(masks));
-
-
-        for (RasterDataNode raster : rasters) {
-            GeoCoding geoCoding = raster.getGeoCoding();
-            for (RasterDataNode rasterDataNode : rasters) {
-                if (!geoCoding.getMapCRS().equals(rasterDataNode.getGeoCoding().getMapCRS())) {
-                    throw new IllegalStateException("GeoCodings are not compatible");
-                }
-            }
-        }
-
-        double[] highestResolution = getHighestResolution(rasters);
-        Dimension dimension = getDimension(rasters, highestResolution);
-        double[] eastingNorthing = getEastingNorthing(rasters);
-
-        CrsGeoCoding sceneGeoCoding = null;
-        try {
-            sceneGeoCoding = new CrsGeoCoding(rasters.get(0).getGeoCoding().getMapCRS(), dimension.width, dimension.height,
-                                              eastingNorthing[0], eastingNorthing[1], highestResolution[0], highestResolution[1], 0, 0);
-        } catch (FactoryException | TransformException e) {
-            e.printStackTrace();
-        }
-
-        sceneImageGeometry.setSize(dimension);
-        sceneImageGeometry.setGeoCoding(sceneGeoCoding);
-
-        sceneImageGeometryInvalidated = false;
-    }
-
-    private Dimension getDimension(List<RasterDataNode> rasters, double[] highestResolution) {
         Dimension dimension = null;
-        for (RasterDataNode node : rasters) {
+        for (RasterDataNode band : rasters) {
             if (dimension == null) {
                 dimension = new Dimension();
             }
-            AffineTransform i2mTransform = ImageManager.getImageToModelTransform(node.getGeoCoding());
-            double scaleX = i2mTransform.getScaleX() / highestResolution[0];
-            double scaleY = Math.abs(i2mTransform.getScaleY()) / highestResolution[1];
-            dimension.width = Math.max(dimension.width, (int) Math.ceil(node.getRasterWidth() * scaleX));
-            dimension.height = Math.max(dimension.height, (int) Math.ceil(node.getRasterHeight() * scaleY));
+            dimension.width = Math.max(dimension.width, band.getRasterWidth());
+            dimension.height = Math.max(dimension.height, band.getRasterHeight());
         }
-        return dimension;
-    }
-
-    private double[] getHighestResolution(List<RasterDataNode> rasters) {
-        double[] resolution = new double[2];
-        Arrays.fill(resolution, Double.MAX_VALUE);
-        for (RasterDataNode node : rasters) {
-            // todo - [multisize_products] This will not work if one is WGS_84 and the other is UTM (mp)
-            AffineTransform i2mTransform = ImageManager.getImageToModelTransform(node.getGeoCoding());
-            resolution[0] = Math.min(resolution[0], i2mTransform.getScaleX());
-            resolution[1] = Math.min(resolution[1], Math.abs(i2mTransform.getScaleY()));
-        }
-        return resolution;
-    }
-
-    private double[] getEastingNorthing(List<RasterDataNode> rasters) {
-        double[] translation = new double[]{Double.MAX_VALUE, Double.MIN_VALUE};
-        for (RasterDataNode node : rasters) {
-            // todo - [multisize_products] This will not work if one is WGS_84 and the other is UTM (mp)
-            AffineTransform i2mTransform = ImageManager.getImageToModelTransform(node.getGeoCoding());
-            translation[0] = Math.min(translation[0], i2mTransform.getTranslateX());
-            translation[1] = Math.max(translation[1], i2mTransform.getTranslateY());
-        }
-        return translation;
+        sceneImageGeometry.setSize(dimension);
+        sceneImageGeometryInvalidated = false;
     }
 
     /**
