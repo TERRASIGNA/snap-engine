@@ -937,7 +937,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      * @return The geo-physical sample value.
      */
     public int getSampleInt(int x, int y) {
-        final PlanarImage image = getGeophysicalImage();
+        final PlanarImage image = getGeophysicalImage_();
         int tx = image.XToTileX(x);
         int ty = image.YToTileY(y);
         Raster tile = image.getTile(tx, ty);
@@ -955,7 +955,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      * @return The geo-physical sample value.
      */
     public float getSampleFloat(int x, int y) {
-        final PlanarImage image = getGeophysicalImage();
+        final PlanarImage image = getGeophysicalImage_();
         int tx = image.XToTileX(x);
         int ty = image.YToTileY(y);
         Raster tile = image.getTile(tx, ty);
@@ -1106,7 +1106,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
 
     /**
      * @see #getPixels(int, int, int, int, double[], ProgressMonitor)
-     * @deprecated since BEAM 4.11. Use {@link #getSourceImage()} instead.
+     * @deprecated since BEAM 4.11. Use {@link #getSourceImage_()} instead.
      */
     public double[] getPixels(int x, int y, int w, int h, double[] pixels) {
         return getPixels(x, y, w, h, pixels, ProgressMonitor.NULL);
@@ -1876,7 +1876,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      * Returns whether the source image is set on this {@code RasterDataNode}.
      *
      * @return whether the source image is set.
-     * @see #getSourceImage()
+     * @see #getSourceImage_()
      * @see #setSourceImage(java.awt.image.RenderedImage)
      * @see #setSourceImage(com.bc.ceres.glevel.MultiLevelImage)
      * @see #createSourceImage()
@@ -1895,7 +1895,8 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
      * @see #isSourceImageSet()
      * @since BEAM 4.2
      */
-    public MultiLevelImage getSourceImage() {
+    // todo [multisize_products] needs to be renamed
+    public MultiLevelImage getSourceImage_() {
         if (!isSourceImageSet()) {
             synchronized (this) {
                 if (!isSourceImageSet()) {
@@ -1904,6 +1905,10 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
             }
         }
         return sourceImage;
+    }
+
+    public MultiLevelImage getSourceImage() {
+        return getSceneSourceImage();
     }
 
     /**
@@ -1948,6 +1953,25 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
         }
     }
 
+    private MultiLevelImage getSceneSourceImage() {
+        return toMultiLevelImage(transformImage(getSourceImage_()));
+    }
+
+    private MultiLevelImage getSceneGeophysicalImage() {
+        return toMultiLevelImage(transformImage(getGeophysicalImage_()));
+    }
+
+    private RenderedImage transformImage(RenderedImage sourceImage) {
+        if (getProduct() != null) {
+            ImageGeometryTransform imageGeometryTransform = getImageGeometryTransform();
+            if (imageGeometryTransform != null) {
+                sourceImage = imageGeometryTransform.transform(sourceImage, getGeoCoding(),
+                                                               getProduct().getSceneImageGeometry());
+            }
+        }
+        return sourceImage;
+    }
+
     /**
      * Returns whether the geophysical image is set on this {@code RasterDataNode}.
      * <p/>
@@ -1960,11 +1984,16 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
         return geophysicalImage != null;
     }
 
+    public MultiLevelImage getGeophysicalImage() {
+        return getSceneGeophysicalImage();
+    }
+
     /**
      * @return The geophysical source image.
      * @since BEAM 4.5
      */
-    public MultiLevelImage getGeophysicalImage() {
+    // todo [multisize_products] needs to be renamed
+    public MultiLevelImage getGeophysicalImage_() {
         if (geophysicalImage == null) {
             synchronized (this) {
                 if (geophysicalImage == null) {
@@ -1973,7 +2002,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
                             || getDataType() == ProductData.TYPE_UINT32) {
                         this.geophysicalImage = createGeophysicalImage();
                     } else {
-                        this.geophysicalImage = getSourceImage();
+                        this.geophysicalImage = getSourceImage_();
                     }
                 }
             }
@@ -1982,7 +2011,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
     }
 
     private MultiLevelImage createGeophysicalImage() {
-        return new DefaultMultiLevelImage(new GenericMultiLevelSource(getSourceImage()) {
+        return new DefaultMultiLevelImage(new GenericMultiLevelSource(getSourceImage_()) {
 
             @Override
             protected RenderedImage createImage(RenderedImage[] sourceImages, int level) {
@@ -2115,7 +2144,7 @@ public abstract class RasterDataNode extends DataNode implements Scaling {
             if (accurate) {
                 setStx(computeStxImpl(0, pm));
             } else {
-                final int levelCount = getSourceImage().getModel().getLevelCount();
+                final int levelCount = getSourceImage_().getModel().getLevelCount();
                 final int statisticsLevel = ImageManager.getInstance().getStatisticsLevel(this, levelCount);
                 setStx(computeStxImpl(statisticsLevel, pm));
             }
