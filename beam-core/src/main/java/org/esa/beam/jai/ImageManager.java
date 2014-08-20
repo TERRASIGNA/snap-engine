@@ -163,7 +163,7 @@ public class ImageManager {
      *
      * @param geoCoding A geo-coding, may be {@code null}.
      * @return The coordinate reference system used for the model space. If {@code geoCoding} is {@code null},
-     * it will be a default image coordinate reference system (an instance of {@code org.opengis.referencing.crs.ImageCRS}).
+     *         it will be a default image coordinate reference system (an instance of {@code org.opengis.referencing.crs.ImageCRS}).
      */
     public static CoordinateReferenceSystem getModelCrs(GeoCoding geoCoding) {
         if (geoCoding != null) {
@@ -386,6 +386,9 @@ public class ImageManager {
 
     private PlanarImage createColored1BandImage(RasterDataNode valueBand, ImageInfo valueImageInfo, int level) {
         Assert.notNull(valueBand, "valueBand");
+        if (valueImageInfo == null) {
+            valueImageInfo = valueBand.getImageInfo(ProgressMonitor.NULL);
+        }
         Assert.notNull(valueImageInfo, "valueImageInfo");
         PlanarImage sourceImage = getSourceImage(valueBand, level);
         PlanarImage valueImage = createByteIndexedImage(valueBand, sourceImage, valueImageInfo);
@@ -754,7 +757,7 @@ public class ImageManager {
             palette = Arrays.copyOf(origPalette, origPalette.length + 1);
             palette[palette.length - 1] = imageInfo.getNoDataColor();
         } else {
-            palette = createColorPalette(rasterDataNode.getImageInfo());
+            palette = createColorPalette(imageInfo);
         }
 
         final byte[][] lutData = new byte[3][palette.length];
@@ -908,13 +911,14 @@ public class ImageManager {
         Assert.notNull(rasters, "rasters");
         Assert.argument(rasters.length == 1 || rasters.length == 3, "rasters.length == 1 || rasters.length == 3");
         if (rasters.length == 1) {
-            Assert.state(rasters[0].getImageInfo() != null, "rasters[0].getImageInfo()");
-            return rasters[0].getImageInfo();
+            RasterDataNode raster = rasters[0];
+            Assert.state(raster.getImageInfo() != null, "raster.getImageInfo() != null");
+            return raster.getImageInfo();
         } else {
             final RGBChannelDef rgbChannelDef = new RGBChannelDef();
             for (int i = 0; i < rasters.length; i++) {
                 RasterDataNode raster = rasters[i];
-                Assert.state(rasters[i].getImageInfo() != null, "rasters[i].getImageInfo()");
+                Assert.state(rasters[i].getImageInfo() != null, "rasters[i].getImageInfo() != null");
                 ImageInfo imageInfo = raster.getImageInfo();
                 rgbChannelDef.setSourceName(i, raster.getName());
                 rgbChannelDef.setMinDisplaySample(i, imageInfo.getColorPaletteDef().getMinDisplaySample());

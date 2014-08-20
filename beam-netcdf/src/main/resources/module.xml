@@ -17,7 +17,7 @@
 <module>
     <manifestVersion>1.0.0</manifestVersion>
     <symbolicName>beam-netcdf</symbolicName>
-    <version>5.0.1</version>
+    <version>5.0.2</version>
     <name>NetCDF Product Reader and Writer</name>
     <description>
         A product reader and writer for NetCDF files. It supports metadata profiles for CF, BEAM, HDF-EOS, ODESA.
@@ -31,6 +31,9 @@
 
     <changelog>
         <![CDATA[
+        <b>Changes in 5.0.2</b><br/>
+        [BEAM-1713] Variables are not written to NetCDF4 if they contain illegal character<br/>
+        [BEAM-1700] NetCDF reader cannot read AMSR2 L1R<br/>
         <b>Changes in 5.0.1</b><br/>
         [BEAM-1695] Add configuration of metadata values limitation for NetCDF reader<br/>
         [BEAM-1681] Modis MOD09 product used wrong semi_major and semi_minor values<br/>
@@ -62,6 +65,7 @@
             <mnemonic>N</mnemonic>
             <shortDescr>Import a NetCDF data product or product subset.</shortDescr>
             <helpId>importNetCdfProduct</helpId>
+            <parent>importFileFormats</parent>
         </action>
         <action>
             <id>importNetCdfCFProduct</id>
@@ -71,6 +75,7 @@
             <mnemonic>H</mnemonic>
             <shortDescr>Import a NetCDF/CF data product or product subset.</shortDescr>
             <helpId>importNetCdfProduct</helpId>
+            <parent>importFileFormats</parent>
         </action>
         <action>
             <id>importNetCdfBEAMProduct</id>
@@ -80,6 +85,7 @@
             <mnemonic>H</mnemonic>
             <shortDescr>Import a NetCDF/BEAM data product or product subset.</shortDescr>
             <helpId>importNetCdfProduct</helpId>
+            <parent>importFileFormats</parent>
         </action>
         <action>
             <id>importHdfEosProduct</id>
@@ -90,6 +96,7 @@
             <mnemonic>H</mnemonic>
             <shortDescr>Import a gridded HDF-EOS data product or product subset.</shortDescr>
             <helpId>importNetCdfProduct</helpId>
+            <parent>importFileFormats</parent>
         </action>
         <action>
             <id>exportNetCdfCFProduct</id>
