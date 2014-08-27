@@ -16,11 +16,11 @@
 
 <module>
     <manifestVersion>1.0.0</manifestVersion>
-    <symbolicName>beam-pgx-reader</symbolicName>
-    <version>5.0</version>
+    <symbolicName>snap-pgx-reader</symbolicName>
+    <version>0.5</version>
     <name>PGX Product Reader</name>
 
-    <description>Enables BEAM to read PGX data products.</description>
+    <description>Enables SNAP to read PGX data products.</description>
     <vendor>Brockmann Consult GmbH</vendor>
     <contactAddress>Max-Planck-Str. 2, 21502 Geesthacht (Germany)</contactAddress>
     <copyright>(C) 2014 by Brockmann Consult GmbH</copyright>
@@ -28,25 +28,17 @@
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
 
 
-    <changelog>
-        <![CDATA[
-            <b>Changes in 5.0</b><br/>
-            [BEAM-1612] PGX reader plugin may take very long to determine decode qualification<br/>
-        ]]>
-    </changelog>
-
-
     <dependency>
-        <module>beam-core</module>
+        <module>snap-core</module>
     </dependency>
     <dependency>
-        <module>beam-visat-rcp</module>
+        <module>snap-visat-rcp</module>
         <optional>true</optional>
     </dependency>
 
     <categories>Reader,PGX</categories>
 
-    <extension point="beam-ui:actions">
+    <extension point="snap-ui:actions">
         <action>
             <id>importPgxProduct</id>
             <class>org.esa.beam.visat.actions.ProductImportAction</class>

@@ -1,18 +1,12 @@
 <module>
     <manifestVersion>1.0.0</manifestVersion>
-    <symbolicName>beam-meris-cloud</symbolicName>
-    <version>5.0</version>
+    <symbolicName>s3tbx-meris-cloud</symbolicName>
+    <version>0.5</version>
     <name>MERIS Cloud Probability Processor</name>
 
     <description>
         The MERIS Cloud Probability Processor calculates a cloud probability for MERIS L1b pixels.
     </description>
-    <changelog>
-        <![CDATA[
-        <b>Changes in 5.0</b><br/>
-        [BEAM-1609] - Convert Cloud Processor to GPF<br/>
-        ]]>
-    </changelog>
 
     <vendor>Brockmann Consult GmbH</vendor>
     <contactAddress>Max-Planck-Str. 2, 21502 Geesthacht (Germany)</contactAddress>
@@ -21,16 +15,16 @@
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
 
     <dependency>
-        <module>beam-envisat-reader</module>
+        <module>snap-envisat-reader</module>
     </dependency>
     <dependency>
-        <module>beam-visat-rcp</module>
+        <module>snap-visat-rcp</module>
         <optional>true</optional>
     </dependency>
 
     <categories>Application,Processor,MERIS</categories>
 
-    <extension point="beam-ui:actions">
+    <extension point="snap-ui:actions">
         <action>
             <parent>processing.preProcessing</parent>
             <id>cloudScientificTool</id>
@@ -38,15 +32,15 @@
             <class>org.esa.beam.visat.actions.DefaultOperatorAction</class>
             <operatorName>CloudProb</operatorName>
             <dialogTitle>MERIS Cloud Probability Processor</dialogTitle>
-            <shortDescr>Invoke the BEAM MERIS Cloud Probability Processor.</shortDescr>
+            <shortDescr>Invoke the MERIS Cloud Probability Processor.</shortDescr>
             <targetProductNameSuffix>_cloud</targetProductNameSuffix>
             <helpId>cloudScientificTool</helpId>
         </action>
     </extension>
 
-    <extension point="beam-ui:helpSets">
+    <extension point="snap-ui:helpSets">
         <helpSet>
-            <parent>beam-help</parent>
+            <parent>snap-beam-help</parent>
             <path>doc/help/cloud.hs</path>
         </helpSet>
     </extension>

@@ -130,7 +130,7 @@ public final class ResourceUtils {
                 && RuntimeActivator.getInstance().getModuleContext() != null) {
             return RuntimeActivator.getInstance().getModuleContext().getRuntimeConfig().getContextId();
         }
-        return System.getProperty("ceres.context", "nest");
+        return System.getProperty("ceres.context", "unknown");
     }
 
     public static String getHomeUrl() {
@@ -154,7 +154,7 @@ public final class ResourceUtils {
     }
 
     public static File getResFolder() {
-        return new File(ResourceUtils.getHomeUrl(), "res");
+        return new File(ResourceUtils.getHomeUrl(), "resource");
     }
 
     public static File findUserAppFile(String filename) {

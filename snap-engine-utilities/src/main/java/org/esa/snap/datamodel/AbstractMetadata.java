@@ -399,11 +399,10 @@ public final class AbstractMetadata {
     /**
      * Creates and returns the orignal product metadata
      *
-     * @param product input product
+     * @param root input product metadata root
      * @return original metadata
      */
-    public static MetadataElement addOriginalProductMetadata(final Product product) {
-        final MetadataElement root = product.getMetadataRoot();
+    public static MetadataElement addOriginalProductMetadata(final MetadataElement root) {
         MetadataElement origMetadata = root.getElement(ORIGINAL_PRODUCT_METADATA);
         if (origMetadata == null) {
             origMetadata = new MetadataElement(ORIGINAL_PRODUCT_METADATA);
@@ -603,11 +602,14 @@ public final class AbstractMetadata {
         }
         MetadataElement abstractedMetadata = root.getElement(AbstractMetadata.ABSTRACT_METADATA_ROOT);
         if (abstractedMetadata == null) {
-            abstractedMetadata = addAbstractedMetadataHeader(root);
-        } else {
-            migrateToCurrentVersion(abstractedMetadata);
-            patchMissingMetadata(abstractedMetadata);
+            abstractedMetadata = root.getElement("Abstracted Metadata"); // legacy
+            if(abstractedMetadata == null) {
+                abstractedMetadata = addAbstractedMetadataHeader(root);
+            }
         }
+        migrateToCurrentVersion(abstractedMetadata);
+        patchMissingMetadata(abstractedMetadata);
+
         return abstractedMetadata;
     }
 
@@ -638,8 +640,7 @@ public final class AbstractMetadata {
         }
     }
 
-    public static MetadataElement getSlaveMetadata(final Product product) {
-        final MetadataElement targetRoot = product.getMetadataRoot();
+    public static MetadataElement getSlaveMetadata(final MetadataElement targetRoot) {
         MetadataElement targetSlaveMetadataRoot = targetRoot.getElement(AbstractMetadata.SLAVE_METADATA_ROOT);
         if (targetSlaveMetadataRoot == null) {
             targetSlaveMetadataRoot = new MetadataElement(AbstractMetadata.SLAVE_METADATA_ROOT);

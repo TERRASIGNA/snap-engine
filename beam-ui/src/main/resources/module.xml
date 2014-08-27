@@ -16,29 +16,13 @@
 
 <module>
     <manifestVersion>1.0.0</manifestVersion>
-    <symbolicName>beam-ui</symbolicName>
-    <version>5.0.1</version>
-    <name>BEAM User Interface Library</name>
+    <symbolicName>snap-ui</symbolicName>
+    <version>0.5</version>
+    <name>SNAP User Interface Library</name>
     <activator>org.esa.beam.BeamUiActivator</activator>
 
 
     <description>This module provides user interface components used e.g. by VISAT.</description>
-    <changelog>
-        <![CDATA[
-        <b>Changes in 5.0.1</b><br/>
-        [BEAM-1669] The button 'Define Subset...' is disabled in certain cases<br/>
-        Harmonisation with NEST: Add drag and drop transfer handling to product browser<br/>
-        Harmonisation with NEST: Add product identification to product browser<br/>
-        <b>Changes in 5.0</b><br/>
-        [BEAM-1059] User-defined band sets shall be saved/restored<br/>
-        [BEAM-1287] Default RGB profile of MERIS L1b is Landsat but should be Tristimulus<br/>
-        [BEAM-1423] Negative value used as stroke-width in vector data layer editor leads to Exception<br/>
-        [BEAM-1561] Slider labels of colour manipulation tool are all zero for small value ranges <br/>
-        [BEAM-1457] Display a spectral band's wavelengths next to its name<br/>
-        [BEAM-1404] Image views shall draw pixel grid at high zoom levels<br/>
-        [BEAM-1401] Null pointer exception when closing image views<br/>
-        ]]>
-    </changelog>
 
     <vendor>Brockmann Consult GmbH</vendor>
     <contactAddress>Max-Planck-Str. 2, 21502 Geesthacht (Germany)</contactAddress>
@@ -48,13 +32,13 @@
 
 
     <dependency>
-        <module>beam-core</module>
+        <module>snap-core</module>
     </dependency>
     <dependency>
-        <module>ceres-ui</module>
+        <module>snap-ceres-ui</module>
     </dependency>
     <dependency>
-        <module>ceres-binding</module>
+        <module>snap-binding</module>
     </dependency>
 
     <categories>System,Library</categories>
@@ -235,7 +219,7 @@
         Demonstrates how we create layers for special feature types, e.g. "org.esa.beam.TrackPoint".
         See class org.esa.beam.framework.ui.product.TrackLayerTypeFactory.
     -->
-    <extension point="ceres-core:adapters">
+    <extension point="snap-ceres-core:adapters">
         <adapter>
             <extensibleType>org.esa.beam.framework.datamodel.VectorDataNode</extensibleType>
             <extensionFactory>org.esa.beam.framework.ui.product.TrackLayerTypeFactory</extensionFactory>

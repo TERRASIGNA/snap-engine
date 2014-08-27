@@ -1,27 +1,27 @@
 <module>
     <manifestVersion>1.0.0</manifestVersion>
-    <symbolicName>beam-reader-tests</symbolicName>
-    <version>5.0</version>
-    <name>BEAM Product Reader Integration Tests</name>
+    <symbolicName>snap-reader-tests</symbolicName>
+    <version>0.5</version>
+    <name>SNAP Product Reader Integration Tests</name>
 
     <description>
-        Creates and copies template JSON code to the clipboard for further use in the BEAM reader acceptance tests.
+        Creates and copies template JSON code to the clipboard for further use in the SNAP reader acceptance tests.
     </description>
 
     <dependency>
-        <module>beam-core</module>
+        <module>snap-core</module>
     </dependency>
     <dependency>
-        <module>beam-visat-rcp</module>
+        <module>snap-visat-rcp</module>
     </dependency>
 
-    <extension point="beam-ui:actions">
+    <extension point="snap-ui:actions">
 
         <action>
             <id>createExpectedJsonCode</id>
             <class>org.esa.beam.visat.actions.CreateExpectedJsonCodeCommand</class>
             <text>Copy Expected JSON Code to Clipboard</text>
-            <shortDescr>Creates and copies template JSON code to the clipboard for further use in the BEAM reader acceptance tests.</shortDescr>
+            <shortDescr>Creates and copies template JSON code to the clipboard for further use in the SNAP reader acceptance tests.</shortDescr>
             <parent>exportOther</parent>
             <context>product</context>
         </action>

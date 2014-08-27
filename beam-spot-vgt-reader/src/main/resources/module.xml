@@ -1,10 +1,10 @@
 <module>
     <manifestVersion>1.0.0</manifestVersion>
-    <symbolicName>beam-spot-vgt-reader</symbolicName>
-    <version>5.0</version>
-    <name>BEAM SPOT VGT Product Reader</name>
+    <symbolicName>s3tbx-spot-vgt-reader</symbolicName>
+    <version>0.5</version>
+    <name>SNAP SPOT VGT Product Reader</name>
 
-    <description>Enables BEAM to read SPOT VGT data products.</description>
+    <description>Enables SNAP to read SPOT VGT data products.</description>
 
     <vendor>Brockmann Consult GmbH</vendor>
     <contactAddress>Max-Planck-Str. 2, 21502 Geesthacht (Germany)</contactAddress>
@@ -12,28 +12,21 @@
     <url>http://envisat.esa.int/beam</url>
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
 
-    <changelog>
-        <![CDATA[
-                <b>Changes in 5.0</b><br/>
-                [BEAM-1504] - Update NetCDF library to latest version<br/>
-        ]]>
-    </changelog>
-
     <dependency>
-        <module>beam-core</module>
+        <module>snap-core</module>
     </dependency>
     <dependency>
-        <module>beam-netcdf</module>
+        <module>snap-netcdf</module>
     </dependency>
     <dependency>
-        <module>beam-visat-rcp</module>
+        <module>snap-visat-rcp</module>
         <optional>true</optional>
     </dependency>
 
 
     <categories>Reader,CHRIS</categories>
 
-    <extension point="beam-ui:actions">
+    <extension point="snap-ui:actions">
         <action>
             <class>org.esa.beam.visat.actions.ProductImportAction</class>
             <id>importSpotVgtProduct</id>
@@ -46,7 +39,7 @@
         </action>
     </extension>
 
-    <extension point="beam-core:rgbProfiles">
+    <extension point="snap-core:rgbProfiles">
         <rgbProfile>
             <name>SPOT VGT RGB-1</name>
             <red>MIR</red>

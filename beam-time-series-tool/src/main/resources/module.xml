@@ -2,7 +2,7 @@
     <manifestVersion>1.0.0</manifestVersion>
 
     <symbolicName>time-series-tool</symbolicName>
-    <version>5.0</version>
+    <version>0.5</version>
     <name>Time Series Tool</name>
     <funding>ESA, EU</funding>
 
@@ -15,14 +15,6 @@
         ]]>
     </description>
 
-    <changelog>
-        <![CDATA[
-        <b>Changes in 5.0</b><br/>
-            [BEAM-1533] KMZ exports have slightly wrong image envelope coordinates<br/>
-            [BEAM-1497] Command 'Time Series as Google Earth KMZ' misplaced in tools menu<br/>
-        ]]>
-    </changelog>
-
     <vendor>Brockmann Consult GmbH</vendor>
     <contactAddress>Max-Planck-Str. 2, 21502 Geesthacht (Germany)</contactAddress>
     <copyright>(C) 2014 by Brockmann Consult GmbH</copyright>
@@ -33,10 +25,10 @@
     <categories>ui</categories>
 
     <dependency>
-        <module>beam-visat-rcp</module>
+        <module>snap-visat-rcp</module>
     </dependency>
 
-    <extension point="beam-ui:toolViews">
+    <extension point="snap-ui:toolViews">
 
         <toolView>
             <id>timeSeriesPlayerToolView</id>
@@ -108,7 +100,7 @@
 
     </extension>
 
-    <extension point="beam-ui:actions">
+    <extension point="snap-ui:actions">
 
         <action>
             <id>newTimeSeriesAssistantAction</id>
@@ -134,9 +126,9 @@
 
     </extension>
 
-    <extension point="beam-ui:helpSets">
+    <extension point="snap-ui:helpSets">
         <helpSet>
-            <parent>beam-help</parent>
+            <parent>snap-beam-help</parent>
             <path>doc/help/time-series-tool.hs</path>
         </helpSet>
     </extension>

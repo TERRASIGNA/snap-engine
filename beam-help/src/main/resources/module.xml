@@ -17,9 +17,9 @@
 <module>
     <manifestVersion>1.0.0</manifestVersion>
 
-    <symbolicName>beam-help</symbolicName>
-    <name>BEAM Help</name>
-    <version>5.0.1</version>
+    <symbolicName>snap-beam-help</symbolicName>
+    <name>SNAP Help</name>
+    <version>0.5</version>
     <packaging>dir</packaging>
 
 
@@ -31,26 +31,15 @@
     <url>http://envisat.esa.int/beam/</url>
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
 
-    <changelog>
-        <![CDATA[
-        <b>Changes in 5.0.1</b><br/>
-        [BEAM-1678] What's New page is not updated for 5.0<br/>
-        <b>Changes in 5.0</b><br/>
-        [BEAM-1643] Improve 'Accuracy' option in Statistics tool window<br/>
-        [BEAM-1547] BEAM Help documentation for "Define Subset" dialog has not been updated<br/>
-        [BEAM-1550] Link in help to general.html does not work<br/>
-        ]]>
-    </changelog>
-
     <categories>System,Help</categories>
 
     <dependency>
-        <module>beam-ui</module>
+        <module>snap-ui</module>
     </dependency>
 
-    <extension point="beam-ui:helpSets">
+    <extension point="snap-ui:helpSets">
         <helpSet>
-            <id>beam-help</id>
+            <id>snap-beam-help</id>
             <path>doc/help/beam.hs</path>
         </helpSet>
     </extension>

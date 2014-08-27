@@ -15,36 +15,30 @@
  */
 package org.esa.snap.db;
 
-import junit.framework.TestCase;
 import org.esa.snap.datamodel.AbstractMetadata;
+import org.junit.Before;
+import org.junit.Test;
 
-import java.sql.SQLException;
+import java.io.File;
+import java.net.URL;
 
 
 /**
-
+ * Test db query
  */
-public class TestDBQuery extends TestCase {
+public class TestDBQuery {
 
+    private static String dbPropertiesPath = "org/esa/snap/config/productDB.properties";
     private ProductDB db;
 
-    public TestDBQuery(String name) {
-        super(name);
-    }
-
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
-
-        db = ProductDB.instance();
+        final URL fileUrl = this.getClass().getClassLoader().getResource(dbPropertiesPath);
+        db = ProductDB.testInstance(new File(fileUrl.getFile()));
     }
 
-    public void tearDown() throws Exception {
-        super.tearDown();
-
-        ProductDB.deleteInstance();
-    }
-
-    public void testQuery() throws SQLException {
+    @Test
+    public void testQuery() throws Exception {
         final DBQuery dbQuery = new DBQuery();
         dbQuery.setSelectedMissions(new String[]{"ENVISAT"});
 
@@ -52,7 +46,8 @@ public class TestDBQuery extends TestCase {
         showProductEntries(productEntryList);
     }
 
-    public void testFreeQuery() throws SQLException {
+    //@Test //todo
+    public void testFreeQuery() throws Exception {
         final DBQuery dbQuery = new DBQuery();
         dbQuery.setFreeQuery(AbstractMetadata.PRODUCT + " LIKE 'RS2_SGF%'");
 

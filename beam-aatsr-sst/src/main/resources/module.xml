@@ -16,13 +16,13 @@
 
 <module>
     <manifestVersion>1.0.0</manifestVersion>
-    <symbolicName>beam-aatsr-sst</symbolicName>
-    <version>5.0</version>
+    <symbolicName>snap-aatsr-sst</symbolicName>
+    <version>0.5</version>
     <name>AATSR SST Processor</name>
 
     <description>
-        The BEAM AATSR SST Processor is aimed to enable the user to calculate the sea-surface temperature
-        from (A)ATSR brightness temperatures. The BEAM implementation is explicitly opened for the addition of
+        The AATSR SST Processor is aimed to enable the user to calculate the sea-surface temperature
+        from (A)ATSR brightness temperatures. The implementation is explicitly opened for the addition of
         new coefficient sets.
     </description>
 
@@ -33,13 +33,13 @@
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
 
     <dependency>
-        <module>beam-envisat-reader</module>
+        <module>snap-envisat-reader</module>
     </dependency>
     <dependency>
-        <module>beam-gpf</module>
+        <module>snap-gpf</module>
     </dependency>
     <dependency>
-        <module>beam-visat-rcp</module>
+        <module>snap-visat-rcp</module>
         <optional>true</optional>
     </dependency>
 
@@ -50,7 +50,7 @@
 
     <categories>Application,Processor,Envisat,AATSR</categories>
 
-    <extension point="beam-ui:actions">
+    <extension point="snap-ui:actions">
         <action>
             <parent>processing.thematicWater</parent>
             <id>sstScientificTool</id>
@@ -62,9 +62,9 @@
         </action>
     </extension>
 
-    <extension point="beam-ui:helpSets">
+    <extension point="snap-ui:helpSets">
         <helpSet>
-            <parent>beam-help</parent>
+            <parent>snap-beam-help</parent>
             <path>doc/help/sst.hs</path>
         </helpSet>
     </extension>
