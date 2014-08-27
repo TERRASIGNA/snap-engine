@@ -17,6 +17,7 @@ package org.esa.beam.dataio.dimap;
 
 import org.esa.beam.framework.datamodel.Band;
 import org.esa.beam.framework.datamodel.CrsGeoCoding;
+import org.esa.beam.framework.datamodel.GeoCoding;
 import org.esa.beam.framework.datamodel.GeoPos;
 import org.esa.beam.framework.datamodel.ReprojectionImageGeometry;
 import org.esa.beam.framework.datamodel.MapGeoCoding;
