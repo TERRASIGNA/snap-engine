@@ -19,7 +19,7 @@
         <module>snap-core</module>
     </dependency>
     <dependency>
-        <module>snap-visat</module>
+        <module>snap-visat-rcp</module>
         <optional>true</optional>
     </dependency>
 
@@ -41,7 +41,7 @@
             <text>HICO (ENVI format)</text>
             <useAllFileFilter>false</useAllFileFilter>
             <shortDescr>Import a HICO data product.</shortDescr>
-            <parent>importFileFormats</parent>
+            <parent>importMultispectral</parent>
         </action>
 
 		 <action>
