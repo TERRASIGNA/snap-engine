@@ -587,7 +587,7 @@ public class VisatApp extends BasicApp implements AppContext {
         ToolViewDescriptor[] toolViewDescriptors = VisatActivator.getInstance().getToolViewDescriptors();
         for (ToolViewDescriptor toolViewDescriptor : toolViewDescriptors) {
             // triggers also command registration in command manager
-            toolViewDescriptor.createShowViewCommand(applicationPage);
+//            toolViewDescriptor.createShowViewCommand(applicationPage);
         }
     }
 
@@ -1986,16 +1986,18 @@ public class VisatApp extends BasicApp implements AppContext {
         return toolBar;
     }
 
-    protected JMenu createAnalysisMenu() {
-        return createJMenu("analysis", "Analysis", 'A',
-                InformationToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
-                GeoCodingToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
-                StatisticsToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
-                HistogramPlotToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
-                ScatterPlotToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
-                DensityPlotToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
-                ProfilePlotToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX
-        );
+    protected void createAnalysisMenu() {
+//        return nulll;
+//    protected JMenu createAnalysisMenu() {
+//        return createJMenu("analysis", "Analysis", 'A',
+//                InformationToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
+//                GeoCodingToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
+//                StatisticsToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
+//                HistogramPlotToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
+//                ScatterPlotToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
+//                DensityPlotToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX,
+//                ProfilePlotToolView.ID + SHOW_TOOLVIEW_CMD_POSTFIX
+//        );
     }
 
     protected CommandBar createAnalysisToolBar() {
@@ -2231,14 +2233,14 @@ public class VisatApp extends BasicApp implements AppContext {
         menuBar.setHidable(false);
         menuBar.setStretch(true);
 
-        menuBar.add(createJMenu("file", "File", 'F'));
-        menuBar.add(createJMenu("edit", "Edit", 'E'));
-        menuBar.add(createJMenu("view", "View", 'V'));
-        menuBar.add(createAnalysisMenu());
-        menuBar.add(createJMenu("tools", "Utilities", 'U'));
-        menuBar.add(createJMenu("processing", "Processing", 'P'));
-        menuBar.add(createJMenu("window", "Window", 'W'));
-        menuBar.add(createJMenu("help", "Help", 'H'));
+//        menuBar.add(createJMenu("file", "File", 'F'));
+//        menuBar.add(createJMenu("edit", "Edit", 'E'));
+//        menuBar.add(createJMenu("view", "View", 'V'));
+//        menuBar.add(createAnalysisMenu());
+//        menuBar.add(createJMenu("tools", "Utilities", 'U'));
+//        menuBar.add(createJMenu("processing", "Processing", 'P'));
+//        menuBar.add(createJMenu("window", "Window", 'W'));
+//        menuBar.add(createJMenu("help", "Help", 'H'));
 
         return menuBar;
     }

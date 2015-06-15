@@ -941,301 +941,301 @@
 
         <!-- View ################################################################################################# -->
 
-        <action>
-            <parent>view</parent>
-            <id>showToolViews</id>
-            <placeFirst>true</placeFirst>
-            <text>Tool Windows</text>
-            <class>org.esa.beam.visat.actions.ActionGroup</class>
-            <shortDescr>Toggle visibility of various tool windows</shortDescr>
-            <sortChildren>true</sortChildren>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showToolViews</id>-->
+            <!--<placeFirst>true</placeFirst>-->
+            <!--<text>Tool Windows</text>-->
+            <!--<class>org.esa.beam.visat.actions.ActionGroup</class>-->
+            <!--<shortDescr>Toggle visibility of various tool windows</shortDescr>-->
+            <!--<sortChildren>true</sortChildren>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>layoutToolViews</id>
-            <placeAfter>showToolViews</placeAfter>
-            <text>Tool Window Layout</text>
-            <class>org.esa.beam.visat.actions.ActionGroup</class>
-            <mnemonic>L</mnemonic>
-            <shortDescr>Manage the position, size and docking state of tool windows.</shortDescr>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>layoutToolViews</id>-->
+            <!--<placeAfter>showToolViews</placeAfter>-->
+            <!--<text>Tool Window Layout</text>-->
+            <!--<class>org.esa.beam.visat.actions.ActionGroup</class>-->
+            <!--<mnemonic>L</mnemonic>-->
+            <!--<shortDescr>Manage the position, size and docking state of tool windows.</shortDescr>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>toolBars</id>
-            <placeAfter>layoutToolViews</placeAfter>
-            <text>Tool Bars</text>
-            <class>org.esa.beam.visat.actions.ActionGroup</class>
-            <mnemonic>T</mnemonic>
-            <shortDescr>Toggle tool bars visibility</shortDescr>
-            <helpId>toolBars</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>toolBars</id>-->
+            <!--<placeAfter>layoutToolViews</placeAfter>-->
+            <!--<text>Tool Bars</text>-->
+            <!--<class>org.esa.beam.visat.actions.ActionGroup</class>-->
+            <!--<mnemonic>T</mnemonic>-->
+            <!--<shortDescr>Toggle tool bars visibility</shortDescr>-->
+            <!--<helpId>toolBars</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>showStatusBar</id>
-            <placeAfter>toolBars</placeAfter>
-            <separatorAfter>true</separatorAfter>
-            <text>Status Bar</text>
-            <class>org.esa.beam.visat.actions.ShowStatusBarAction</class>
-            <mnemonic>S</mnemonic>
-            <selected>true</selected>
-            <toggle>true</toggle>
-            <shortDescr>Toggle visibility of the status bar.</shortDescr>
-            <helpId>showStatusBar</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showStatusBar</id>-->
+            <!--<placeAfter>toolBars</placeAfter>-->
+            <!--<separatorAfter>true</separatorAfter>-->
+            <!--<text>Status Bar</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowStatusBarAction</class>-->
+            <!--<mnemonic>S</mnemonic>-->
+            <!--<selected>true</selected>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Toggle visibility of the status bar.</shortDescr>-->
+            <!--<helpId>showStatusBar</helpId>-->
+        <!--</action>-->
 
         <!-- View / Tool Window Layout / ... ==================================================================== -->
 
-        <action>
-            <parent>layoutToolViews</parent>
-            <id>loadUserLayout</id>
-            <placeFirst>true</placeFirst>
-            <text>Load User Layout</text>
-            <class>org.esa.beam.visat.actions.layout.LoadUserLayoutAction</class>
-            <shortDescr>Load the user layout.</shortDescr>
-        </action>
+        <!--<action>-->
+            <!--<parent>layoutToolViews</parent>-->
+            <!--<id>loadUserLayout</id>-->
+            <!--<placeFirst>true</placeFirst>-->
+            <!--<text>Load User Layout</text>-->
+            <!--<class>org.esa.beam.visat.actions.layout.LoadUserLayoutAction</class>-->
+            <!--<shortDescr>Load the user layout.</shortDescr>-->
+        <!--</action>-->
 
-        <action>
-            <parent>layoutToolViews</parent>
-            <id>saveAsUserLayout</id>
-            <placeAfter>loadUserLayout</placeAfter>
-            <text>Save as User Layout</text>
-            <class>org.esa.beam.visat.actions.layout.SaveAsUserLayoutAction</class>
-            <shortDescr>Save the current layout as user layout.</shortDescr>
-        </action>
+        <!--<action>-->
+            <!--<parent>layoutToolViews</parent>-->
+            <!--<id>saveAsUserLayout</id>-->
+            <!--<placeAfter>loadUserLayout</placeAfter>-->
+            <!--<text>Save as User Layout</text>-->
+            <!--<class>org.esa.beam.visat.actions.layout.SaveAsUserLayoutAction</class>-->
+            <!--<shortDescr>Save the current layout as user layout.</shortDescr>-->
+        <!--</action>-->
 
-        <action>
-            <parent>layoutToolViews</parent>
-            <id>resetLayout</id>
-            <placeAfter>saveAsUserLayout</placeAfter>
-            <text>Reset to Default Layout</text>
-            <class>org.esa.beam.visat.actions.layout.ResetLayoutAction</class>
-            <shortDescr>Reset to initial layout.</shortDescr>
-        </action>
+        <!--<action>-->
+            <!--<parent>layoutToolViews</parent>-->
+            <!--<id>resetLayout</id>-->
+            <!--<placeAfter>saveAsUserLayout</placeAfter>-->
+            <!--<text>Reset to Default Layout</text>-->
+            <!--<class>org.esa.beam.visat.actions.layout.ResetLayoutAction</class>-->
+            <!--<shortDescr>Reset to initial layout.</shortDescr>-->
+        <!--</action>-->
 
         <!-- View / (Show) ... Tool Bar ========================================================================= -->
 
-        <action>
-            <parent>toolBars</parent>
-            <id>showStandardToolBar</id>
-            <placeFirst>true</placeFirst>
-            <text>Standard Tool Bar</text>
-            <class>org.esa.beam.visat.actions.ShowToolBarAction</class>
-            <context>mainToolBar</context>
-            <mnemonic>S</mnemonic>
-            <selected>true</selected>
-            <toggle>true</toggle>
-            <shortDescr>Toggle visibility of the standard tool bar.</shortDescr>
-            <helpId>showStandardToolBar</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>toolBars</parent>-->
+            <!--<id>showStandardToolBar</id>-->
+            <!--<placeFirst>true</placeFirst>-->
+            <!--<text>Standard Tool Bar</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowToolBarAction</class>-->
+            <!--<context>mainToolBar</context>-->
+            <!--<mnemonic>S</mnemonic>-->
+            <!--<selected>true</selected>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Toggle visibility of the standard tool bar.</shortDescr>-->
+            <!--<helpId>showStandardToolBar</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>toolBars</parent>
-            <id>showAnalysisToolBar</id>
-            <placeAfter>showStandardToolBar</placeAfter>
-            <text>Analysis Tool Bar</text>
-            <class>org.esa.beam.visat.actions.ShowToolBarAction</class>
-            <context>analysisToolBar</context>
-            <mnemonic>A</mnemonic>
-            <placeBefore>showLayersToolBar</placeBefore>
-            <selected>true</selected>
-            <toggle>true</toggle>
-            <shortDescr>Toggle visibility of the analysis tool bar.</shortDescr>
-            <helpId>showAnalysisToolBar</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>toolBars</parent>-->
+            <!--<id>showAnalysisToolBar</id>-->
+            <!--<placeAfter>showStandardToolBar</placeAfter>-->
+            <!--<text>Analysis Tool Bar</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowToolBarAction</class>-->
+            <!--<context>analysisToolBar</context>-->
+            <!--<mnemonic>A</mnemonic>-->
+            <!--<placeBefore>showLayersToolBar</placeBefore>-->
+            <!--<selected>true</selected>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Toggle visibility of the analysis tool bar.</shortDescr>-->
+            <!--<helpId>showAnalysisToolBar</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>toolBars</parent>
-            <id>showLayersToolBar</id>
-            <placeAfter>showAnalysisToolBar</placeAfter>
-            <text>Layers Tool Bar</text>
-            <class>org.esa.beam.visat.actions.ShowToolBarAction</class>
-            <context>layersToolBar</context>
-            <mnemonic>L</mnemonic>
-            <selected>true</selected>
-            <toggle>true</toggle>
-            <shortDescr>Toggle visibility of the layers tool bar.</shortDescr>
-            <helpId>showLayersToolBar</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>toolBars</parent>-->
+            <!--<id>showLayersToolBar</id>-->
+            <!--<placeAfter>showAnalysisToolBar</placeAfter>-->
+            <!--<text>Layers Tool Bar</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowToolBarAction</class>-->
+            <!--<context>layersToolBar</context>-->
+            <!--<mnemonic>L</mnemonic>-->
+            <!--<selected>true</selected>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Toggle visibility of the layers tool bar.</shortDescr>-->
+            <!--<helpId>showLayersToolBar</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>toolBars</parent>
-            <id>showToolsToolBar</id>
-            <placeAfter>showLayersToolBar</placeAfter>
-            <text>Tools Tool Bar</text>
-            <class>org.esa.beam.visat.actions.ShowToolBarAction</class>
-            <context>toolsToolBar</context>
-            <mnemonic>T</mnemonic>
-            <selected>true</selected>
-            <toggle>true</toggle>
-            <shortDescr>Toggle visibility of the tools tool bar.</shortDescr>
-            <helpId>showToolsToolBar</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>toolBars</parent>-->
+            <!--<id>showToolsToolBar</id>-->
+            <!--<placeAfter>showLayersToolBar</placeAfter>-->
+            <!--<text>Tools Tool Bar</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowToolBarAction</class>-->
+            <!--<context>toolsToolBar</context>-->
+            <!--<mnemonic>T</mnemonic>-->
+            <!--<selected>true</selected>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Toggle visibility of the tools tool bar.</shortDescr>-->
+            <!--<helpId>showToolsToolBar</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>toolBars</parent>
-            <id>showViewsToolBar</id>
-            <placeAfter>showToolsToolBar</placeAfter>
-            <text>Views Tool Bar</text>
-            <class>org.esa.beam.visat.actions.ShowToolBarAction</class>
-            <context>viewsToolBar</context>
-            <mnemonic>V</mnemonic>
-            <selected>true</selected>
-            <toggle>true</toggle>
-            <shortDescr>Toggle visibility of the views tool bar.</shortDescr>
-            <helpId>showViewsToolBar</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>toolBars</parent>-->
+            <!--<id>showViewsToolBar</id>-->
+            <!--<placeAfter>showToolsToolBar</placeAfter>-->
+            <!--<text>Views Tool Bar</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowToolBarAction</class>-->
+            <!--<context>viewsToolBar</context>-->
+            <!--<mnemonic>V</mnemonic>-->
+            <!--<selected>true</selected>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Toggle visibility of the views tool bar.</shortDescr>-->
+            <!--<helpId>showViewsToolBar</helpId>-->
+        <!--</action>-->
 
         <!-- View / Open ... View ================================================================================ -->
 
-        <action>
-            <parent>view</parent>
-            <id>showImageView</id>
-            <placeAfter>showStatusBar</placeAfter>
-            <separatorBefore>true</separatorBefore>
-            <text>Open Image View</text>
-            <class>org.esa.beam.visat.actions.ShowImageViewAction</class>
-            <mnemonic>I</mnemonic>
-            <accellerator>control alt I</accellerator>
-            <shortDescr>Open an image view for the selected band or tie-point grid.</shortDescr>
-            <context>band,tiePointGrid</context>
-            <smallIcon>icons/ImageView16.gif</smallIcon>
-            <largeIcon>icons/ImageView24.gif</largeIcon>
-            <helpId>imageView</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showImageView</id>-->
+            <!--<placeAfter>showStatusBar</placeAfter>-->
+            <!--<separatorBefore>true</separatorBefore>-->
+            <!--<text>Open Image View</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowImageViewAction</class>-->
+            <!--<mnemonic>I</mnemonic>-->
+            <!--<accellerator>control alt I</accellerator>-->
+            <!--<shortDescr>Open an image view for the selected band or tie-point grid.</shortDescr>-->
+            <!--<context>band,tiePointGrid</context>-->
+            <!--<smallIcon>icons/ImageView16.gif</smallIcon>-->
+            <!--<largeIcon>icons/ImageView24.gif</largeIcon>-->
+            <!--<helpId>imageView</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>showImageViewRGB</id>
-            <placeAfter>showImageView</placeAfter>
-            <text>Open RGB Image View...</text>
-            <class>org.esa.beam.visat.actions.ShowImageViewRGBAction</class>
-            <mnemonic>R</mnemonic>
-            <accellerator>control alt G</accellerator>
-            <shortDescr>Open an RGB image view for the selected product.</shortDescr>
-            <context>product</context>
-            <smallIcon>icons/ImageView16.gif</smallIcon>
-            <largeIcon>icons/ImageView24.gif</largeIcon>
-            <helpId>rgbImageProfile</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showImageViewRGB</id>-->
+            <!--<placeAfter>showImageView</placeAfter>-->
+            <!--<text>Open RGB Image View...</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowImageViewRGBAction</class>-->
+            <!--<mnemonic>R</mnemonic>-->
+            <!--<accellerator>control alt G</accellerator>-->
+            <!--<shortDescr>Open an RGB image view for the selected product.</shortDescr>-->
+            <!--<context>product</context>-->
+            <!--<smallIcon>icons/ImageView16.gif</smallIcon>-->
+            <!--<largeIcon>icons/ImageView24.gif</largeIcon>-->
+            <!--<helpId>rgbImageProfile</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>showMetadataView</id>
-            <placeAfter>showImageViewRGB</placeAfter>
-            <text>Open Metadata View</text>
-            <class>org.esa.beam.visat.actions.ShowMetadataViewAction</class>
-            <mnemonic>M</mnemonic>
-            <accellerator>control alt M</accellerator>
-            <shortDescr>Open a metadata view for the selected metadata node.</shortDescr>
-            <context>metadataNode</context>
-            <smallIcon>icons/ImageView16.gif</smallIcon>
-            <largeIcon>icons/ImageView24.gif</largeIcon>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showMetadataView</id>-->
+            <!--<placeAfter>showImageViewRGB</placeAfter>-->
+            <!--<text>Open Metadata View</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowMetadataViewAction</class>-->
+            <!--<mnemonic>M</mnemonic>-->
+            <!--<accellerator>control alt M</accellerator>-->
+            <!--<shortDescr>Open a metadata view for the selected metadata node.</shortDescr>-->
+            <!--<context>metadataNode</context>-->
+            <!--<smallIcon>icons/ImageView16.gif</smallIcon>-->
+            <!--<largeIcon>icons/ImageView24.gif</largeIcon>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>showPlacemarkView</id>
-            <placeAfter>showMetadataView</placeAfter>
-            <text>Open Placemark View</text>
-            <class>org.esa.beam.visat.actions.ShowPlacemarkViewAction</class>
-            <mnemonic>P</mnemonic>
-            <accellerator>control alt P</accellerator>
-            <shortDescr>Open a placemark view for the selected metadata node.</shortDescr>
-            <context>vectorDataNode</context>
-            <smallIcon>icons/RsVectorData16.gif</smallIcon>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showPlacemarkView</id>-->
+            <!--<placeAfter>showMetadataView</placeAfter>-->
+            <!--<text>Open Placemark View</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowPlacemarkViewAction</class>-->
+            <!--<mnemonic>P</mnemonic>-->
+            <!--<accellerator>control alt P</accellerator>-->
+            <!--<shortDescr>Open a placemark view for the selected metadata node.</shortDescr>-->
+            <!--<context>vectorDataNode</context>-->
+            <!--<smallIcon>icons/RsVectorData16.gif</smallIcon>-->
+        <!--</action>-->
 
         <!-- View / Show ... Overlay ============================================================================== -->
 
-        <action>
-            <parent>view</parent>
-            <id>showNoDataOverlay</id>
-            <placeAfter>showPlacemarkView</placeAfter>
-            <separatorBefore>true</separatorBefore>
-            <text>Show No-Data Overlay</text>
-            <class>org.esa.beam.visat.actions.ShowNoDataOverlayAction</class>
-            <toggle>true</toggle>
-            <shortDescr>Show/hide no-data overlay for the selected image</shortDescr>
-            <context>image</context>
-            <smallIcon>icons/NoDataOverlay16.gif</smallIcon>
-            <largeIcon>icons/NoDataOverlay24.gif</largeIcon>
-            <helpId>noDataOverlay</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showNoDataOverlay</id>-->
+            <!--<placeAfter>showPlacemarkView</placeAfter>-->
+            <!--<separatorBefore>true</separatorBefore>-->
+            <!--<text>Show No-Data Overlay</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowNoDataOverlayAction</class>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Show/hide no-data overlay for the selected image</shortDescr>-->
+            <!--<context>image</context>-->
+            <!--<smallIcon>icons/NoDataOverlay16.gif</smallIcon>-->
+            <!--<largeIcon>icons/NoDataOverlay24.gif</largeIcon>-->
+            <!--<helpId>noDataOverlay</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>showShapeOverlay</id>
-            <placeAfter>showNoDataOverlay</placeAfter>
-            <text>Show Geometry Overlay</text>
-            <class>org.esa.beam.visat.actions.ShowGeometryOverlayAction</class>
-            <toggle>true</toggle>
-            <mnemonic>O</mnemonic>
-            <shortDescr>Show/hide geometry overlay for the selected image</shortDescr>
-            <context>image</context>
-            <smallIcon>icons/ShapeOverlay16.gif</smallIcon>
-            <largeIcon>icons/ShapeOverlay24.gif</largeIcon>
-            <helpId>showShapeOverlay</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showShapeOverlay</id>-->
+            <!--<placeAfter>showNoDataOverlay</placeAfter>-->
+            <!--<text>Show Geometry Overlay</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowGeometryOverlayAction</class>-->
+            <!--<toggle>true</toggle>-->
+            <!--<mnemonic>O</mnemonic>-->
+            <!--<shortDescr>Show/hide geometry overlay for the selected image</shortDescr>-->
+            <!--<context>image</context>-->
+            <!--<smallIcon>icons/ShapeOverlay16.gif</smallIcon>-->
+            <!--<largeIcon>icons/ShapeOverlay24.gif</largeIcon>-->
+            <!--<helpId>showShapeOverlay</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>showGraticuleOverlay</id>
-            <placeAfter>showShapeOverlay</placeAfter>
-            <text>Show Graticule Overlay</text>
-            <class>org.esa.beam.visat.actions.ShowGraticuleOverlayAction</class>
-            <toggle>true</toggle>
-            <mnemonic>G</mnemonic>
-            <shortDescr>Show/hide graticule overlay for the selected image</shortDescr>
-            <context>image</context>
-            <smallIcon>icons/GraticuleOverlay16.gif</smallIcon>
-            <largeIcon>icons/GraticuleOverlay24.gif</largeIcon>
-            <helpId>showGraticuleOverlay</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showGraticuleOverlay</id>-->
+            <!--<placeAfter>showShapeOverlay</placeAfter>-->
+            <!--<text>Show Graticule Overlay</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowGraticuleOverlayAction</class>-->
+            <!--<toggle>true</toggle>-->
+            <!--<mnemonic>G</mnemonic>-->
+            <!--<shortDescr>Show/hide graticule overlay for the selected image</shortDescr>-->
+            <!--<context>image</context>-->
+            <!--<smallIcon>icons/GraticuleOverlay16.gif</smallIcon>-->
+            <!--<largeIcon>icons/GraticuleOverlay24.gif</largeIcon>-->
+            <!--<helpId>showGraticuleOverlay</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>showPinOverlay</id>
-            <placeAfter>showGraticuleOverlay</placeAfter>
-            <text>Show Pin Overlay</text>
-            <class>org.esa.beam.visat.actions.ShowPinOverlayAction</class>
-            <toggle>true</toggle>
-            <shortDescr>Show/hide pin overlay for the selected image</shortDescr>
-            <smallIcon>icons/PinOverlay16.gif</smallIcon>
-            <largeIcon>icons/PinOverlay24.gif</largeIcon>
-            <context>image</context>
-            <helpId>showPinOverlay</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showPinOverlay</id>-->
+            <!--<placeAfter>showGraticuleOverlay</placeAfter>-->
+            <!--<text>Show Pin Overlay</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowPinOverlayAction</class>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Show/hide pin overlay for the selected image</shortDescr>-->
+            <!--<smallIcon>icons/PinOverlay16.gif</smallIcon>-->
+            <!--<largeIcon>icons/PinOverlay24.gif</largeIcon>-->
+            <!--<context>image</context>-->
+            <!--<helpId>showPinOverlay</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>showGcpOverlay</id>
-            <placeAfter>showPinOverlay</placeAfter>
-            <text>Show GCP Overlay</text>
-            <class>org.esa.beam.visat.actions.ShowGcpOverlayAction</class>
-            <toggle>true</toggle>
-            <shortDescr>Show/hide GCP overlay for the selected image</shortDescr>
-            <smallIcon>icons/GcpOverlay16.gif</smallIcon>
-            <largeIcon>icons/GcpOverlay24.gif</largeIcon>
-            <context>image</context>
-            <helpId>showGcpOverlay</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showGcpOverlay</id>-->
+            <!--<placeAfter>showPinOverlay</placeAfter>-->
+            <!--<text>Show GCP Overlay</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowGcpOverlayAction</class>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Show/hide GCP overlay for the selected image</shortDescr>-->
+            <!--<smallIcon>icons/GcpOverlay16.gif</smallIcon>-->
+            <!--<largeIcon>icons/GcpOverlay24.gif</largeIcon>-->
+            <!--<context>image</context>-->
+            <!--<helpId>showGcpOverlay</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>view</parent>
-            <id>showWorldMapOverlay</id>
-            <placeAfter>showGcpOverlay</placeAfter>
-            <text>Show World Map Overlay</text>
-            <class>org.esa.beam.visat.actions.ShowWorldMapOverlayAction</class>
-            <toggle>true</toggle>
-            <shortDescr>Show/hide World Map overlay for the selected image</shortDescr>
-            <smallIcon>icons/WorldMapOverlay16.png</smallIcon>
-            <largeIcon>icons/WorldMapOverlay24.png</largeIcon>
-            <context>image</context>
-            <helpId>showWorldMapOverlay</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>view</parent>-->
+            <!--<id>showWorldMapOverlay</id>-->
+            <!--<placeAfter>showGcpOverlay</placeAfter>-->
+            <!--<text>Show World Map Overlay</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowWorldMapOverlayAction</class>-->
+            <!--<toggle>true</toggle>-->
+            <!--<shortDescr>Show/hide World Map overlay for the selected image</shortDescr>-->
+            <!--<smallIcon>icons/WorldMapOverlay16.png</smallIcon>-->
+            <!--<largeIcon>icons/WorldMapOverlay24.png</largeIcon>-->
+            <!--<context>image</context>-->
+            <!--<helpId>showWorldMapOverlay</helpId>-->
+        <!--</action>-->
 
         <!-- Analysis ################################################################################################ -->
 
@@ -1245,153 +1245,156 @@
 
         <!-- Tools ################################################################################################ -->
 
-        <action>
-            <parent>tools</parent>
-            <id>bandArithmetic</id>
-            <placeFirst>true</placeFirst>
-            <text>Create Band from Math Expression...</text>
-            <class>org.esa.beam.visat.actions.BandMathsAction</class>
-            <shortDescr>Create a new band using an arbitrary mathematical expression</shortDescr>
-            <context>image,band,tiePointGrid</context>
-            <smallIcon>icons/BAritmethic16.gif</smallIcon>
-            <largeIcon>icons/BAritmethic24.gif</largeIcon>
-            <helpId>bandArithmetic</helpId>
-        </action>
+        <!--matei; tools-->
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>bandArithmetic</id>-->
+            <!--<placeFirst>true</placeFirst>-->
+            <!--<text>Create Band from Math Expression...</text>-->
+            <!--<class>org.esa.beam.visat.actions.BandMathsAction</class>-->
+            <!--<shortDescr>Create a new band using an arbitrary mathematical expression</shortDescr>-->
+            <!--<context>image,band,tiePointGrid</context>-->
+            <!--<smallIcon>icons/BAritmethic16.gif</smallIcon>-->
+            <!--<largeIcon>icons/BAritmethic24.gif</largeIcon>-->
+            <!--<helpId>bandArithmetic</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>createFilteredBand</id>
-            <placeAfter>bandArithmetic</placeAfter>
-            <text>Create Filtered Band...</text>
-            <class>org.esa.beam.visat.actions.imgfilter.CreateFilteredBandAction</class>
-            <shortDescr>Applies a filter to the currently selected band and adds it as a new band.</shortDescr>
-            <context>band</context>
-            <helpId>createFilteredBand</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>createFilteredBand</id>-->
+            <!--<placeAfter>bandArithmetic</placeAfter>-->
+            <!--<text>Create Filtered Band...</text>-->
+            <!--<class>org.esa.beam.visat.actions.imgfilter.CreateFilteredBandAction</class>-->
+            <!--<shortDescr>Applies a filter to the currently selected band and adds it as a new band.</shortDescr>-->
+            <!--<context>band</context>-->
+            <!--<helpId>createFilteredBand</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>convertComputedBand2Band</id>
-            <placeAfter>createFilteredBand</placeAfter>
-            <text>Convert Computed Band</text>
-            <class>org.esa.beam.visat.actions.ConvertComputedBandIntoBandAction</class>
-            <shortDescr>Computes a "real" band from a virtual band or filtered band</shortDescr>
-            <context>virtualBand</context>
-            <helpId>convertComputedBand2Band</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>convertComputedBand2Band</id>-->
+            <!--<placeAfter>createFilteredBand</placeAfter>-->
+            <!--<text>Convert Computed Band</text>-->
+            <!--<class>org.esa.beam.visat.actions.ConvertComputedBandIntoBandAction</class>-->
+            <!--<shortDescr>Computes a "real" band from a virtual band or filtered band</shortDescr>-->
+            <!--<context>virtualBand</context>-->
+            <!--<helpId>convertComputedBand2Band</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>createDemRelatedBands</id>
-            <text>Create Elevation Bands from DEM...</text>
-            <placeAfter>convertComputedBand2Band</placeAfter>
-            <class>org.esa.beam.visat.actions.CreateDemRelatedBandsAction</class>
-            <shortDescr>Creates DEM elevation and optionally DEM-corrected lat/lon bands from a selected DEM
-            </shortDescr>
-            <context>product</context>
-            <helpId>createDemRelatedBands</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>createDemRelatedBands</id>-->
+            <!--<text>Create Elevation Bands from DEM...</text>-->
+            <!--<placeAfter>convertComputedBand2Band</placeAfter>-->
+            <!--<class>org.esa.beam.visat.actions.CreateDemRelatedBandsAction</class>-->
+            <!--<shortDescr>Creates DEM elevation and optionally DEM-corrected lat/lon bands from a selected DEM-->
+            <!--</shortDescr>-->
+            <!--<context>product</context>-->
+            <!--<helpId>createDemRelatedBands</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>createXYDisplacementBandsAction</id>
-            <placeAfter>createDemRelatedBands</placeAfter>
-            <text>Create Geo-Coding Displacement Bands...</text>
-            <class>org.esa.beam.visat.actions.CreateGeoCodingDisplacementBandsAction</class>
-            <shortDescr>&lt;html&gt;Computes actual pixel position minus pixel position computed from inverse
-                geo-coding&lt;br/&gt;
-                and adds displacements as new bands (test for geo-coding accuracy).
-            </shortDescr>
-            <context>createXYDisplacementBandsAction</context>
-            <helpId>createXYDisplacementBandsAction</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>createXYDisplacementBandsAction</id>-->
+            <!--<placeAfter>createDemRelatedBands</placeAfter>-->
+            <!--<text>Create Geo-Coding Displacement Bands...</text>-->
+            <!--<class>org.esa.beam.visat.actions.CreateGeoCodingDisplacementBandsAction</class>-->
+            <!--<shortDescr>&lt;html&gt;Computes actual pixel position minus pixel position computed from inverse-->
+                <!--geo-coding&lt;br/&gt;-->
+                <!--and adds displacements as new bands (test for geo-coding accuracy).-->
+            <!--</shortDescr>-->
+            <!--<context>createXYDisplacementBandsAction</context>-->
+            <!--<helpId>createXYDisplacementBandsAction</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>createAsarNrcsBands</id>
-            <placeAfter>createXYDisplacementBandsAction</placeAfter>
-            <text>Create NRCS Bands (ASAR)...</text>
-            <class>org.esa.beam.visat.actions.CreateAsarNrcsBandsAction</class>
-            <mnemonic>N</mnemonic>
-            <shortDescr>Computes ASAR Normalised Radar Cross Section bands.</shortDescr>
-            <helpId>createAsarNrcsBands</helpId>
-        </action>
-
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>createAsarNrcsBands</id>-->
+            <!--<placeAfter>createXYDisplacementBandsAction</placeAfter>-->
+            <!--<text>Create NRCS Bands (ASAR)...</text>-->
+            <!--<class>org.esa.beam.visat.actions.CreateAsarNrcsBandsAction</class>-->
+            <!--<mnemonic>N</mnemonic>-->
+            <!--<shortDescr>Computes ASAR Normalised Radar Cross Section bands.</shortDescr>-->
+            <!--<helpId>createAsarNrcsBands</helpId>-->
+        <!--</action>-->
+        <!--///tools-->
         <!-- Tools / ... Pixel Geo-Coding... ===================================================================== -->
 
-        <action>
-            <parent>tools</parent>
-            <id>attachPixelGeoCoding</id>
-            <placeAfter>createAsarNrcsBands</placeAfter>
-            <placeBefore>detachPixelGeoCoding</placeBefore>
-            <separatorBefore>true</separatorBefore>
-            <text>Attach Pixel Geo-Coding...</text>
-            <class>org.esa.beam.visat.actions.AttachPixelGeoCodingAction</class>
-            <shortDescr>Attach a pixel based geo-coding to the selected product</shortDescr>
-            <context>attachPixelGeoCoding</context>
-            <helpId>attachPixelGeoCoding</helpId>
-        </action>
+        <!--matei : tools pixel geocode-->
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>attachPixelGeoCoding</id>-->
+            <!--<placeAfter>createAsarNrcsBands</placeAfter>-->
+            <!--<placeBefore>detachPixelGeoCoding</placeBefore>-->
+            <!--<separatorBefore>true</separatorBefore>-->
+            <!--<text>Attach Pixel Geo-Coding...</text>-->
+            <!--<class>org.esa.beam.visat.actions.AttachPixelGeoCodingAction</class>-->
+            <!--<shortDescr>Attach a pixel based geo-coding to the selected product</shortDescr>-->
+            <!--<context>attachPixelGeoCoding</context>-->
+            <!--<helpId>attachPixelGeoCoding</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>detachPixelGeoCoding</id>
-            <placeAfter>attachPixelGeoCoding</placeAfter>
-            <separatorAfter>true</separatorAfter>
-            <text>Detach Pixel Geo-Coding...</text>
-            <class>org.esa.beam.visat.actions.DetachPixelGeoCodingAction</class>
-            <shortDescr>Detach a pixel based geo-coding from the selected product</shortDescr>
-            <context>detachPixelGeoCoding</context>
-            <helpId>detachPixelGeoCoding</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>detachPixelGeoCoding</id>-->
+            <!--<placeAfter>attachPixelGeoCoding</placeAfter>-->
+            <!--<separatorAfter>true</separatorAfter>-->
+            <!--<text>Detach Pixel Geo-Coding...</text>-->
+            <!--<class>org.esa.beam.visat.actions.DetachPixelGeoCodingAction</class>-->
+            <!--<shortDescr>Detach a pixel based geo-coding from the selected product</shortDescr>-->
+            <!--<context>detachPixelGeoCoding</context>-->
+            <!--<helpId>detachPixelGeoCoding</helpId>-->
+        <!--</action>-->
 
-        <!-- ==================================================================================================== -->
+        <!--&lt;!&ndash; ==================================================================================================== &ndash;&gt;-->
 
-        <action>
-            <parent>tools</parent>
-            <id>createVectorDataNode</id>
-            <placeAfter>detachPixelGeoCoding</placeAfter>
-            <text>Create Vector Data Container...</text>
-            <class>org.esa.beam.visat.actions.CreateVectorDataNodeAction</class>
-            <shortDescr>Create a new vector data container for drawing line and polygons.</shortDescr>
-            <smallIcon>icons/NewVectorDataNode16.gif</smallIcon>
-            <largeIcon>icons/NewVectorDataNode24.gif</largeIcon>
-            <helpId>createVectorDataNode</helpId>
-            <context>product</context>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>createVectorDataNode</id>-->
+            <!--<placeAfter>detachPixelGeoCoding</placeAfter>-->
+            <!--<text>Create Vector Data Container...</text>-->
+            <!--<class>org.esa.beam.visat.actions.CreateVectorDataNodeAction</class>-->
+            <!--<shortDescr>Create a new vector data container for drawing line and polygons.</shortDescr>-->
+            <!--<smallIcon>icons/NewVectorDataNode16.gif</smallIcon>-->
+            <!--<largeIcon>icons/NewVectorDataNode24.gif</largeIcon>-->
+            <!--<helpId>createVectorDataNode</helpId>-->
+            <!--<context>product</context>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>showGeometryAsWkt</id>
-            <placeAfter>createVectorDataNode</placeAfter>
-            <text>WKT from Geometry...</text>
-            <class>org.esa.beam.visat.actions.ShowGeometryWktAction</class>
-            <popuptext>WKT from Geometry...</popuptext>
-            <shortDescr>Get the well-known-text (WKT) representation of a selected geometry.</shortDescr>
-            <context>image</context>
-            <helpId>showGeometryAsWkt</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>showGeometryAsWkt</id>-->
+            <!--<placeAfter>createVectorDataNode</placeAfter>-->
+            <!--<text>WKT from Geometry...</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowGeometryWktAction</class>-->
+            <!--<popuptext>WKT from Geometry...</popuptext>-->
+            <!--<shortDescr>Get the well-known-text (WKT) representation of a selected geometry.</shortDescr>-->
+            <!--<context>image</context>-->
+            <!--<helpId>showGeometryAsWkt</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>insertWktAsGeometry</id>
-            <placeAfter>showGeometryAsWkt</placeAfter>
-            <text>Geometry from WKT...</text>
-            <class>org.esa.beam.visat.actions.InsertWktGeometryAction</class>
-            <popuptext>Geometry from WKT...</popuptext>
-            <shortDescr>Creates a geomtry from well-known-text (WKT) representation.</shortDescr>
-            <context>image</context>
-            <helpId>insertWktAsGeometry</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>insertWktAsGeometry</id>-->
+            <!--<placeAfter>showGeometryAsWkt</placeAfter>-->
+            <!--<text>Geometry from WKT...</text>-->
+            <!--<class>org.esa.beam.visat.actions.InsertWktGeometryAction</class>-->
+            <!--<popuptext>Geometry from WKT...</popuptext>-->
+            <!--<shortDescr>Creates a geomtry from well-known-text (WKT) representation.</shortDescr>-->
+            <!--<context>image</context>-->
+            <!--<helpId>insertWktAsGeometry</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>computeMaskArea</id>
-            <placeAfter>insertWktAsGeometry</placeAfter>
-            <text>Compute Mask Area...</text>
-            <class>org.esa.beam.visat.actions.ComputeMaskAreaAction</class>
-            <shortDescr>Displays information about the spatial area of the mask.</shortDescr>
-            <helpId>computeMaskArea</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>computeMaskArea</id>-->
+            <!--<placeAfter>insertWktAsGeometry</placeAfter>-->
+            <!--<text>Compute Mask Area...</text>-->
+            <!--<class>org.esa.beam.visat.actions.ComputeMaskAreaAction</class>-->
+            <!--<shortDescr>Displays information about the spatial area of the mask.</shortDescr>-->
+            <!--<helpId>computeMaskArea</helpId>-->
+        <!--</action>-->
+        <!--//tools pixel geocode-->
 
         <!-- Processing ########################################################################################## -->
 
@@ -1499,246 +1502,250 @@
             <helpId>flipDialog</helpId>
         </action-->
 
+            <!--matei: meniu help-->
         <!-- Help ########################################################################################## -->
 
-        <action>
-            <parent>help</parent>
-            <id>helpTopics</id>
-            <placeFirst>true</placeFirst>
-            <text>Help Topics</text>
-            <class>org.esa.beam.visat.actions.HelpTopicsAction</class>
-            <mnemonic>T</mnemonic>
-            <accelerator>F1</accelerator>
-            <separatorBefore>false</separatorBefore>
-            <description>Opens the VISAT help browser.</description>
-            <smallIcon>icons/Help16.png</smallIcon>
-            <largeIcon>icons/Help22.png</largeIcon>
-            <helpId>visat</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>help</parent>-->
+            <!--<id>helpTopics</id>-->
+            <!--<placeFirst>true</placeFirst>-->
+            <!--<text>Help Topics</text>-->
+            <!--<class>org.esa.beam.visat.actions.HelpTopicsAction</class>-->
+            <!--<mnemonic>T</mnemonic>-->
+            <!--<accelerator>F1</accelerator>-->
+            <!--<separatorBefore>false</separatorBefore>-->
+            <!--<description>Opens the VISAT help browser.</description>-->
+            <!--<smallIcon>icons/Help16.png</smallIcon>-->
+            <!--<largeIcon>icons/Help22.png</largeIcon>-->
+            <!--<helpId>visat</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>help</parent>
-            <id>showHomePage</id>
-            <placeAfter>helpTopics</placeAfter>
-            <text>Sentinel Home Page</text>
-            <class>org.esa.beam.visat.actions.ShowHomePageAction</class>
-            <mnemonic>B</mnemonic>
-            <shortDescr>Opens the Sentinel home page with the default web browser.</shortDescr>
-        </action>
+        <!--<action>-->
+            <!--<parent>help</parent>-->
+            <!--<id>showHomePage</id>-->
+            <!--<placeAfter>helpTopics</placeAfter>-->
+            <!--<text>Sentinel Home Page</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowHomePageAction</class>-->
+            <!--<mnemonic>B</mnemonic>-->
+            <!--<shortDescr>Opens the Sentinel home page with the default web browser.</shortDescr>-->
+        <!--</action>-->
 
-        <action>
-            <parent>help</parent>
-            <id>showDataSources</id>
-            <placeAfter>showHomePage</placeAfter>
-            <text>Access to Data Products</text>
-            <class>org.esa.beam.visat.actions.ShowDataSourcesAction</class>
-            <mnemonic>D</mnemonic>
-            <shortDescr>Provides information how different data products are accessed.</shortDescr>
-            <helpId>showDataSources</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>help</parent>-->
+            <!--<id>showDataSources</id>-->
+            <!--<placeAfter>showHomePage</placeAfter>-->
+            <!--<text>Access to Data Products</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowDataSourcesAction</class>-->
+            <!--<mnemonic>D</mnemonic>-->
+            <!--<shortDescr>Provides information how different data products are accessed.</shortDescr>-->
+            <!--<helpId>showDataSources</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>help</parent>
-            <id>showUpdateDialog</id>
-            <placeAfter>showDataSources</placeAfter>
-            <separatorBefore>true</separatorBefore>
-            <text>Module Manager...</text>
-            <class>org.esa.beam.visat.actions.ShowModuleManagerAction</class>
-            <mnemonic>M</mnemonic>
-            <shortDescr>Opens the module manager.</shortDescr>
-            <helpId>moduleManager</helpId>
-            <smallIcon>icons/ModuleManager16.png</smallIcon>
-            <largeIcon>icons/ModuleManager22.png</largeIcon>
-        </action>
+        <!--<action>-->
+            <!--<parent>help</parent>-->
+            <!--<id>showUpdateDialog</id>-->
+            <!--<placeAfter>showDataSources</placeAfter>-->
+            <!--<separatorBefore>true</separatorBefore>-->
+            <!--<text>Module Manager...</text>-->
+            <!--<class>org.esa.beam.visat.actions.ShowModuleManagerAction</class>-->
+            <!--<mnemonic>M</mnemonic>-->
+            <!--<shortDescr>Opens the module manager.</shortDescr>-->
+            <!--<helpId>moduleManager</helpId>-->
+            <!--<smallIcon>icons/ModuleManager16.png</smallIcon>-->
+            <!--<largeIcon>icons/ModuleManager22.png</largeIcon>-->
+        <!--</action>-->
 
-        <action>
-            <parent>help</parent>
-            <id>about</id>
-            <placeLast>true</placeLast>
-            <separatorBefore>true</separatorBefore>
-            <text>About SNAP</text>
-            <class>org.esa.beam.visat.actions.AboutAction</class>
-            <mnemonic>A</mnemonic>
-            <accelerator>ctrl alt A</accelerator>
-            <shortDescr>Displays information about SNAP.</shortDescr>
-            <smallIcon>icons/About16.gif</smallIcon>
-            <largeIcon>icons/About24.gif</largeIcon>
-            <helpId>about</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>help</parent>-->
+            <!--<id>about</id>-->
+            <!--<placeLast>true</placeLast>-->
+            <!--<separatorBefore>true</separatorBefore>-->
+            <!--<text>About SNAP</text>-->
+            <!--<class>org.esa.beam.visat.actions.AboutAction</class>-->
+            <!--<mnemonic>A</mnemonic>-->
+            <!--<accelerator>ctrl alt A</accelerator>-->
+            <!--<shortDescr>Displays information about SNAP.</shortDescr>-->
+            <!--<smallIcon>icons/About16.gif</smallIcon>-->
+            <!--<largeIcon>icons/About24.gif</largeIcon>-->
+            <!--<helpId>about</helpId>-->
+        <!--</action>-->
+        <!--///meniu help-->
 
+        <!--matei: tools menu-->
         <!-- Interactor Tools ##################################################################################### -->
 
-        <action>
-            <parent>tools</parent>
-            <id>selectTool</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>com.bc.ceres.swing.figure.interactions.SelectionInteractor</interactor>
-            <interactorListener>org.esa.beam.visat.actions.SelectionInteractorInterceptor</interactorListener>
-            <text>Select</text>
-            <shortDescr>Selection Tool</shortDescr>
-            <largeIcon>icons/SelectTool24.gif</largeIcon>
-            <selected>true</selected>
-            <helpId>selectTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>selectTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>com.bc.ceres.swing.figure.interactions.SelectionInteractor</interactor>-->
+            <!--<interactorListener>org.esa.beam.visat.actions.SelectionInteractorInterceptor</interactorListener>-->
+            <!--<text>Select</text>-->
+            <!--<shortDescr>Selection Tool</shortDescr>-->
+            <!--<largeIcon>icons/SelectTool24.gif</largeIcon>-->
+            <!--<selected>true</selected>-->
+            <!--<helpId>selectTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>zoomTool</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>com.bc.ceres.swing.figure.interactions.ZoomInteractor</interactor>
-            <placeAfter>selectTool</placeAfter>
-            <text>Zoom</text>
-            <shortDescr>Zooming Tool</shortDescr>
-            <largeIcon>icons/ZoomTool24.gif</largeIcon>
-            <selected>false</selected>
-            <context>image</context>
-            <helpId>zoomTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>zoomTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>com.bc.ceres.swing.figure.interactions.ZoomInteractor</interactor>-->
+            <!--<placeAfter>selectTool</placeAfter>-->
+            <!--<text>Zoom</text>-->
+            <!--<shortDescr>Zooming Tool</shortDescr>-->
+            <!--<largeIcon>icons/ZoomTool24.gif</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<context>image</context>-->
+            <!--<helpId>zoomTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>pannerTool</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>com.bc.ceres.swing.figure.interactions.PanInteractor</interactor>
-            <placeAfter>zoomTool</placeAfter>
-            <text>Pan</text>
-            <shortDescr>Pan Tool</shortDescr>
-            <largeIcon>icons/PannerTool24.gif</largeIcon>
-            <selected>false</selected>
-            <context>image</context>
-            <helpId>panTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>pannerTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>com.bc.ceres.swing.figure.interactions.PanInteractor</interactor>-->
+            <!--<placeAfter>zoomTool</placeAfter>-->
+            <!--<text>Pan</text>-->
+            <!--<shortDescr>Pan Tool</shortDescr>-->
+            <!--<largeIcon>icons/PannerTool24.gif</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<context>image</context>-->
+            <!--<helpId>panTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>pinTool</id>
-            <class>org.esa.beam.visat.actions.PlacemarkToolAction</class>
-            <interactor>org.esa.beam.visat.toolviews.placemark.pin.InsertPinInteractor</interactor>
-            <placeAfter>pannerTool</placeAfter>
-            <text>Pin Tool</text>
-            <shortDescr>Pin placing tool</shortDescr>
-            <description>Sets, edits or deletes pins</description>
-            <largeIcon>icons/PinTool24.gif</largeIcon>
-            <selected>false</selected>
-            <helpId>pinTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>pinTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.PlacemarkToolAction</class>-->
+            <!--<interactor>org.esa.beam.visat.toolviews.placemark.pin.InsertPinInteractor</interactor>-->
+            <!--<placeAfter>pannerTool</placeAfter>-->
+            <!--<text>Pin Tool</text>-->
+            <!--<shortDescr>Pin placing tool</shortDescr>-->
+            <!--<description>Sets, edits or deletes pins</description>-->
+            <!--<largeIcon>icons/PinTool24.gif</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<helpId>pinTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>gcpTool</id>
-            <class>org.esa.beam.visat.actions.PlacemarkToolAction</class>
-            <interactor>org.esa.beam.visat.toolviews.placemark.gcp.InsertGcpInteractor</interactor>
-            <placeAfter>pinTool</placeAfter>
-            <placeBefore>drawLineTool</placeBefore>
-            <text>GCP Tool</text>
-            <shortDescr>Sets, edits or deletes ground control points</shortDescr>
-            <largeIcon>icons/GcpTool24.gif</largeIcon>
-            <selected>false</selected>
-            <helpId>gcpTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>gcpTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.PlacemarkToolAction</class>-->
+            <!--<interactor>org.esa.beam.visat.toolviews.placemark.gcp.InsertGcpInteractor</interactor>-->
+            <!--<placeAfter>pinTool</placeAfter>-->
+            <!--<placeBefore>drawLineTool</placeBefore>-->
+            <!--<text>GCP Tool</text>-->
+            <!--<shortDescr>Sets, edits or deletes ground control points</shortDescr>-->
+            <!--<largeIcon>icons/GcpTool24.gif</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<helpId>gcpTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>drawLineTool</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>com.bc.ceres.swing.figure.interactions.InsertLineFigureInteractor</interactor>
-            <interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>
-            <placeAfter>pinTool</placeAfter>
-            <text>Draw Line</text>
-            <shortDescr>Line drawing tool</shortDescr>
-            <largeIcon>icons/DrawLineTool24.gif</largeIcon>
-            <selected>false</selected>
-            <context>image</context>
-            <helpId>drawLineTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>drawLineTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>com.bc.ceres.swing.figure.interactions.InsertLineFigureInteractor</interactor>-->
+            <!--<interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>-->
+            <!--<placeAfter>pinTool</placeAfter>-->
+            <!--<text>Draw Line</text>-->
+            <!--<shortDescr>Line drawing tool</shortDescr>-->
+            <!--<largeIcon>icons/DrawLineTool24.gif</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<context>image</context>-->
+            <!--<helpId>drawLineTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>drawRectangleTool</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>com.bc.ceres.swing.figure.interactions.InsertRectangleFigureInteractor</interactor>
-            <interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>
-            <placeAfter>drawLineTool</placeAfter>
-            <text>Draw Rectangle</text>
-            <shortDescr>Rectangle drawing tool</shortDescr>
-            <largeIcon>icons/DrawRectangleTool24.gif</largeIcon>
-            <context>image</context>
-            <selected>false</selected>
-            <helpId>drawRectangleTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>drawRectangleTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>com.bc.ceres.swing.figure.interactions.InsertRectangleFigureInteractor</interactor>-->
+            <!--<interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>-->
+            <!--<placeAfter>drawLineTool</placeAfter>-->
+            <!--<text>Draw Rectangle</text>-->
+            <!--<shortDescr>Rectangle drawing tool</shortDescr>-->
+            <!--<largeIcon>icons/DrawRectangleTool24.gif</largeIcon>-->
+            <!--<context>image</context>-->
+            <!--<selected>false</selected>-->
+            <!--<helpId>drawRectangleTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>drawEllipseTool</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>com.bc.ceres.swing.figure.interactions.InsertEllipseFigureInteractor</interactor>
-            <interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>
-            <placeAfter>drawRectangleTool</placeAfter>
-            <text>Draw Ellipse</text>
-            <shortDescr>Ellipse drawing tool</shortDescr>
-            <largeIcon>icons/DrawEllipseTool24.gif</largeIcon>
-            <selected>false</selected>
-            <context>image</context>
-            <helpId>drawEllipseTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>drawEllipseTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>com.bc.ceres.swing.figure.interactions.InsertEllipseFigureInteractor</interactor>-->
+            <!--<interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>-->
+            <!--<placeAfter>drawRectangleTool</placeAfter>-->
+            <!--<text>Draw Ellipse</text>-->
+            <!--<shortDescr>Ellipse drawing tool</shortDescr>-->
+            <!--<largeIcon>icons/DrawEllipseTool24.gif</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<context>image</context>-->
+            <!--<helpId>drawEllipseTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>drawPolylineTool</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>com.bc.ceres.swing.figure.interactions.InsertPolylineFigureInteractor</interactor>
-            <interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>
-            <placeAfter>drawEllipseTool</placeAfter>
-            <text>Draw Polyline</text>
-            <shortDescr>Polyline drawing tool</shortDescr>
-            <largeIcon>icons/DrawPolylineTool24.gif</largeIcon>
-            <selected>false</selected>
-            <context>image</context>
-            <helpId>drawPolylineTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>drawPolylineTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>com.bc.ceres.swing.figure.interactions.InsertPolylineFigureInteractor</interactor>-->
+            <!--<interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>-->
+            <!--<placeAfter>drawEllipseTool</placeAfter>-->
+            <!--<text>Draw Polyline</text>-->
+            <!--<shortDescr>Polyline drawing tool</shortDescr>-->
+            <!--<largeIcon>icons/DrawPolylineTool24.gif</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<context>image</context>-->
+            <!--<helpId>drawPolylineTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>drawPolygonTool</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>com.bc.ceres.swing.figure.interactions.InsertPolygonFigureInteractor</interactor>
-            <interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>
-            <placeAfter>drawPolylineTool</placeAfter>
-            <text>Draw Polygon</text>
-            <shortDescr>Polygon drawing tool</shortDescr>
-            <largeIcon>icons/DrawPolygonTool24.gif</largeIcon>
-            <selected>false</selected>
-            <context>image</context>
-            <helpId>drawPolygonTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>drawPolygonTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>com.bc.ceres.swing.figure.interactions.InsertPolygonFigureInteractor</interactor>-->
+            <!--<interactorListener>org.esa.beam.visat.actions.InsertFigureInteractorInterceptor</interactorListener>-->
+            <!--<placeAfter>drawPolylineTool</placeAfter>-->
+            <!--<text>Draw Polygon</text>-->
+            <!--<shortDescr>Polygon drawing tool</shortDescr>-->
+            <!--<largeIcon>icons/DrawPolygonTool24.gif</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<context>image</context>-->
+            <!--<helpId>drawPolygonTool</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>rangeFinder</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>org.esa.beam.visat.actions.rangefinder.RangeFinderInteractor</interactor>
-            <placeAfter>selectTool</placeAfter>
-            <text>Range Finder</text>
-            <shortDescr>Determine the distance between two points</shortDescr>
-            <largeIcon>icons/RangeFinder24.gif</largeIcon>
-            <selected>false</selected>
-            <context>image</context>
-            <helpId>rangeFinder</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>rangeFinder</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>org.esa.beam.visat.actions.rangefinder.RangeFinderInteractor</interactor>-->
+            <!--<placeAfter>selectTool</placeAfter>-->
+            <!--<text>Range Finder</text>-->
+            <!--<shortDescr>Determine the distance between two points</shortDescr>-->
+            <!--<largeIcon>icons/RangeFinder24.gif</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<context>image</context>-->
+            <!--<helpId>rangeFinder</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <parent>tools</parent>
-            <id>magicWandTool</id>
-            <class>org.esa.beam.visat.actions.ToolAction</class>
-            <interactor>org.esa.beam.visat.actions.masktools.MagicWandInteractor</interactor>
-            <placeAfter>rangeFinder</placeAfter>
-            <text>Magic Wand</text>
-            <shortDescr>Creates a ROI mask using a magic wand</shortDescr>
-            <largeIcon>/org/esa/beam/visat/actions/masktools/MagicWand22.png</largeIcon>
-            <selected>false</selected>
-            <context>image</context>
-            <helpId>magicWandTool</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>magicWandTool</id>-->
+            <!--<class>org.esa.beam.visat.actions.ToolAction</class>-->
+            <!--<interactor>org.esa.beam.visat.actions.masktools.MagicWandInteractor</interactor>-->
+            <!--<placeAfter>rangeFinder</placeAfter>-->
+            <!--<text>Magic Wand</text>-->
+            <!--<shortDescr>Creates a ROI mask using a magic wand</shortDescr>-->
+            <!--<largeIcon>/org/esa/beam/visat/actions/masktools/MagicWand22.png</largeIcon>-->
+            <!--<selected>false</selected>-->
+            <!--<context>image</context>-->
+            <!--<helpId>magicWandTool</helpId>-->
+        <!--</action>-->
+    <!--///tools-->
 
     </extension>
 

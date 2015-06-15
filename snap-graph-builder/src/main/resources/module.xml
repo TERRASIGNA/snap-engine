@@ -76,32 +76,33 @@
 
     <extension point="snap-ui:actions">
 
-        <action>
-            <id>openGraphBuilderDialog</id>
-            <class>org.esa.snap.dat.actions.OpenGraphBuilderAction</class>
-            <parent>Graphs</parent>
-            <text>Graph Builder</text>
-            <mnemonic>G</mnemonic>
-            <shortDescr>Open Graph Builder dialog.</shortDescr>
-            <description>Open Graph Builder dialog.</description>
-            <smallIcon>/org/esa/snap/icons/cog16.png</smallIcon>
-            <largeIcon>/org/esa/snap/icons/cog.png</largeIcon>
-            <helpId>GraphBuilderDialog</helpId>
-        </action>
+        <!--matei: incerc si de aici sa scot meniurile de sub graph builder-->
+        <!--<action>-->
+            <!--<id>openGraphBuilderDialog</id>-->
+            <!--<class>org.esa.snap.dat.actions.OpenGraphBuilderAction</class>-->
+            <!--<parent>Graphs</parent>-->
+            <!--<text>Graph Builder</text>-->
+            <!--<mnemonic>G</mnemonic>-->
+            <!--<shortDescr>Open Graph Builder dialog.</shortDescr>-->
+            <!--<description>Open Graph Builder dialog.</description>-->
+            <!--<smallIcon>/org/esa/snap/icons/cog16.png</smallIcon>-->
+            <!--<largeIcon>/org/esa/snap/icons/cog.png</largeIcon>-->
+            <!--<helpId>GraphBuilderDialog</helpId>-->
+        <!--</action>-->
 
-        <action>
-            <id>batchProcessing</id>
-            <class>org.esa.snap.dat.actions.BatchProcessingAction</class>
-            <parent>Graphs</parent>
-            <placeAfter>openGraphBuilderDialog</placeAfter>
-            <text>Batch Processing</text>
-            <shortDescr>Batch Process a Graph</shortDescr>
-            <description>Batch Process a Graph On Multiple Products</description>
-            <smallIcon>/org/esa/snap/icons/icon_cogs24.png</smallIcon>
-            <largeIcon>/org/esa/snap/icons/icon_cogs.png</largeIcon>
-            <helpId>batchProcessing</helpId>
-            <separatorAfter>true</separatorAfter>
-        </action>
+        <!--<action>-->
+            <!--<id>batchProcessing</id>-->
+            <!--<class>org.esa.snap.dat.actions.BatchProcessingAction</class>-->
+            <!--<parent>Graphs</parent>-->
+            <!--<placeAfter>openGraphBuilderDialog</placeAfter>-->
+            <!--<text>Batch Processing</text>-->
+            <!--<shortDescr>Batch Process a Graph</shortDescr>-->
+            <!--<description>Batch Process a Graph On Multiple Products</description>-->
+            <!--<smallIcon>/org/esa/snap/icons/icon_cogs24.png</smallIcon>-->
+            <!--<largeIcon>/org/esa/snap/icons/icon_cogs.png</largeIcon>-->
+            <!--<helpId>batchProcessing</helpId>-->
+            <!--<separatorAfter>true</separatorAfter>-->
+        <!--</action>-->
 
     </extension>
 

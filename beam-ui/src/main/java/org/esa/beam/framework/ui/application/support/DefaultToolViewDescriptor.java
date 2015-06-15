@@ -462,7 +462,7 @@ public class DefaultToolViewDescriptor implements ToolViewDescriptor, Configurab
             }
         });
 
-        command.setParent("showToolViews");
+//        command.setParent("showToolViews");
         command.setSmallIcon(getSmallIcon());
         command.setLargeIcon(getLargeIcon());
         command.setShortDescription(getDescription());

@@ -33,35 +33,36 @@
 
     <extension point="snap-ui:actions">
 
-        <action>
-            <id>ClusteringGroup</id>
-            <class>org.esa.beam.visat.actions.ActionGroup</class>
-            <text>Clustering</text>
-            <parent>processing.imageAnalysis</parent>
-        </action>
+        <!--matei : ClusteringGroup din imageanalysis-->
+        <!--<action>-->
+            <!--<id>ClusteringGroup</id>-->
+            <!--<class>org.esa.beam.visat.actions.ActionGroup</class>-->
+            <!--<text>Clustering</text>-->
+            <!--<parent>processing.imageAnalysis</parent>-->
+        <!--</action>-->
 
-        <action>
-            <parent>ClusteringGroup</parent>
-            <id>emClusterAnalysis</id>
-            <text>EM Cluster Analysis...</text>
-            <class>org.esa.beam.visat.actions.DefaultOperatorAction</class>
-            <mnemonic>C</mnemonic>
-            <operatorName>EMClusterAnalysis</operatorName>
-            <dialogTitle>EM Cluster Analysis</dialogTitle>
-            <targetProductNameSuffix>_em</targetProductNameSuffix>
-            <helpId>clusterAnalysisEM</helpId>
-        </action>
-        <action>
-            <parent>ClusteringGroup</parent>
-            <id>kmeansClusterAnalysis</id>
-            <text>K-Means Cluster Analysis...</text>
-            <class>org.esa.beam.visat.actions.DefaultOperatorAction</class>
-            <mnemonic>C</mnemonic>
-            <operatorName>KMeansClusterAnalysis</operatorName>
-            <dialogTitle>K-Means Cluster Analysis</dialogTitle>
-            <targetProductNameSuffix>_kmeans</targetProductNameSuffix>
-            <helpId>clusterAnalysisKMeans</helpId>
-        </action>
+        <!--<action>-->
+            <!--<parent>ClusteringGroup</parent>-->
+            <!--<id>emClusterAnalysis</id>-->
+            <!--<text>EM Cluster Analysis...</text>-->
+            <!--<class>org.esa.beam.visat.actions.DefaultOperatorAction</class>-->
+            <!--<mnemonic>C</mnemonic>-->
+            <!--<operatorName>EMClusterAnalysis</operatorName>-->
+            <!--<dialogTitle>EM Cluster Analysis</dialogTitle>-->
+            <!--<targetProductNameSuffix>_em</targetProductNameSuffix>-->
+            <!--<helpId>clusterAnalysisEM</helpId>-->
+        <!--</action>-->
+        <!--<action>-->
+            <!--<parent>ClusteringGroup</parent>-->
+            <!--<id>kmeansClusterAnalysis</id>-->
+            <!--<text>K-Means Cluster Analysis...</text>-->
+            <!--<class>org.esa.beam.visat.actions.DefaultOperatorAction</class>-->
+            <!--<mnemonic>C</mnemonic>-->
+            <!--<operatorName>KMeansClusterAnalysis</operatorName>-->
+            <!--<dialogTitle>K-Means Cluster Analysis</dialogTitle>-->
+            <!--<targetProductNameSuffix>_kmeans</targetProductNameSuffix>-->
+            <!--<helpId>clusterAnalysisKMeans</helpId>-->
+        <!--</action>-->
         <!--action>
             <parent>ClusteringGroup</parent>
             <id>principleComponentAnalysis</id>

@@ -29,16 +29,17 @@
 
     <categories>VISAT,Processing,Image Analysis</categories>
 
-    <extension point="snap-ui:actions">
-        <action>
-            <parent>processing.imageAnalysis</parent>
-            <id>spectralUnmixing</id>
-            <text>Spectral Unmixing...</text>
-            <class>org.esa.beam.unmixing.visat.SpectralUnmixingAction</class>
-            <mnemonic>U</mnemonic>
-            <helpId>spectralUnmixing</helpId>
-        </action>
-    </extension>
+        <!--matei: image analysis menu-->
+    <!--<extension point="snap-ui:actions">-->
+        <!--<action>-->
+            <!--<parent>processing.imageAnalysis</parent>-->
+            <!--<id>spectralUnmixing</id>-->
+            <!--<text>Spectral Unmixing...</text>-->
+            <!--<class>org.esa.beam.unmixing.visat.SpectralUnmixingAction</class>-->
+            <!--<mnemonic>U</mnemonic>-->
+            <!--<helpId>spectralUnmixing</helpId>-->
+        <!--</action>-->
+    <!--</extension>-->
 
     <extension point="snap-ui:helpSets">
         <helpSet>

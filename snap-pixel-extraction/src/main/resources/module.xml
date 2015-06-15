@@ -46,23 +46,23 @@
     <categories>VISAT,Processing</categories>
 
     <extension point="snap-ui:actions">
-        <action>
-            <parent>tools</parent>
-            <id>pixelExtraction</id>
-            <placeLast>true</placeLast>
-            <text>Extract Pixel Values...</text>
-            <class>org.esa.beam.pixex.visat.PixelExtractionAction</class>
-            <helpId>pixelExtraction</helpId>
-            <shortDescr>Extract pixel values given a list of geographical points from one or more data products.</shortDescr>
-            <mnemonic>P</mnemonic>
-        </action>
+        <!--<action>-->
+            <!--<parent>tools</parent>-->
+            <!--<id>pixelExtraction</id>-->
+            <!--<placeLast>true</placeLast>-->
+            <!--<text>Extract Pixel Values...</text>-->
+            <!--<class>org.esa.beam.pixex.visat.PixelExtractionAction</class>-->
+            <!--<helpId>pixelExtraction</helpId>-->
+            <!--<shortDescr>Extract pixel values given a list of geographical points from one or more data products.</shortDescr>-->
+            <!--<mnemonic>P</mnemonic>-->
+        <!--</action>-->
     </extension>
 
     <extension point="snap-ui:helpSets">
-        <helpSet>
-            <parent>snap-beam-help</parent>
-            <path>doc/help/pixelExtraction.hs</path>
-        </helpSet>
+        <!--<helpSet>-->
+            <!--<parent>snap-beam-help</parent>-->
+            <!--<path>doc/help/pixelExtraction.hs</path>-->
+        <!--</helpSet>-->
     </extension>
 
 </module>
